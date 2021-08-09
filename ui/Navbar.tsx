@@ -28,7 +28,7 @@ const AnimatedFavicon = ({title}: {title: string}) => {
     const [favIndex, setFavIndex] = useState(0)
     const [isHovering, setIsHovering] = useState(false)
 
-    const toggleFavicon = () => setIsHovering(!setIsHovering)
+    const toggleFavicon = () => setIsHovering(!isHovering)
 
     useEffect(() => {
         if(!isHovering) return;

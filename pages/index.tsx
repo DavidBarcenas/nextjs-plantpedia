@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import { getPlantList } from '@api'
+import { Layout } from '@components/Layout'
 
 export default function Home() {
   const [data, setData] = useState<Plant[]>([])
@@ -11,7 +12,8 @@ export default function Home() {
 
   console.log(data)
 
-  return <div>
+  return (
+    <Layout>
     {
       data.map(item => (
         <div>
@@ -20,5 +22,6 @@ export default function Home() {
         </div>
       ))
     }
-  </div>
+  </Layout>
+  )
 }
