@@ -9,6 +9,7 @@
     "build:schema": "graphql-codegen --config codegen.yml"
   },
   "dependencies": {
+    "@material-ui/core": "^4.12.3",
     "next": "^11.0.0",
     "react": "17.0.2",
     "react-dom": "17.0.2"
