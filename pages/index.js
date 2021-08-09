@@ -1,6 +1,17 @@
+import { useEffect } from 'react'
+import { getPlantList } from '@api'
 import Head from 'next/head'
 
 export default function Home() {
+  useEffect(() => {
+    getPlantList({limit: 10})
+      .then(data => {
+        data.map(plant => {
+          console.log(plant.slug)
+        })
+      })
+  }, [])
+
   return (
     <div className="container">
       <Head>
