@@ -1,0 +1,9 @@
+{
+    plantCollection (limit: 10) {
+        total,
+        limit,
+        items {
+        plantName
+        }
+    }
+}
