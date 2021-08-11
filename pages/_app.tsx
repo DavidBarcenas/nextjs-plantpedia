@@ -1,6 +1,7 @@
 import { AppProps } from 'next/app'
 import { UIProvider } from '@ui/Provider'
 import { useServerStyles } from '@ui/ssr'
+import '../styles.css'
 
 const NextApp = ({ Component, pageProps }: AppProps) => {
     useServerStyles()
