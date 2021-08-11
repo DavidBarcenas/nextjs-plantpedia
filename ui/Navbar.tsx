@@ -12,7 +12,7 @@ export const Navbar = ({title, children}: NavbarProps) => {
             position='static' 
             color='transparent' 
             elevation={0}
-        >
+            className='navbar'>
             <Toolbar>
                 <AnimatedFavicon title={title} />
                 {children}

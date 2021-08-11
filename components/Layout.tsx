@@ -22,11 +22,25 @@ export const Layout = ({title = 'Plantpedia', children}: LayoutProps) => {
                 />
             </Head>
             <Header />
-            <main>{children}</main>
+            <main className="wrapper">{children}</main>
             {/* 
                 TODO:
                 - Add Footer Component
             */}
+
+            <style jsx>{`
+                .wrapper {
+                    padding: 1rem;
+                    margin: auto;
+                    max-width: 1360px;
+                }
+
+                @media screen and (min-width: 960px) {
+                    .wrapper {
+                        padding: 5rem 1.5rem;
+                    }
+                }
+            `}</style>
         </>
     )
 }
