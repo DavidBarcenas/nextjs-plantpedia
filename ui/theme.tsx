@@ -1,8 +1,6 @@
 import {createTheme} from '@material-ui/core/styles'
 import { grey, common, lightGreen } from '@material-ui/core/colors'
 
-const muiTheme = createTheme()
-
 const fontSerif = `'Cormorant Garamond', ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;`
 
 export const theme = createTheme({

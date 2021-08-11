@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { getPlantList } from '@api'
 import { Layout } from '@components/Layout'
+import { PlantCollection } from '@components/PlantCollection'
 
 export default function Home() {
   const [data, setData] = useState<Plant[]>([])
@@ -10,18 +11,9 @@ export default function Home() {
       .then(resp => setData(resp))
   }, [])
 
-  console.log(data)
-
   return (
     <Layout>
-    {
-      data.map(item => (
-        <div>
-          <h2>{item.plantName}</h2>
-          <img src={item.image.url} alt={item.plantName} width={item.image.width} height={item.image.height} />
-        </div>
-      ))
-    }
-  </Layout>
+      <PlantCollection plants={data}/>
+    </Layout>
   )
 }
