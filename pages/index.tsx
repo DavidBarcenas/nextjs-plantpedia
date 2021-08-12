@@ -1,8 +1,9 @@
+import { GetStaticProps, InferGetStaticPropsType } from 'next'
 import { getPlantList } from '@api'
 import { Layout } from '@components/Layout'
+import { Authors } from '@components/Authors'
 import { PlantCollection } from '@components/PlantCollection'
 import { Hero } from '@components/Hero'
-import { GetStaticProps, InferGetStaticPropsType } from 'next'
 
 interface HomeProps {
   plants: Plant[]
@@ -21,6 +22,7 @@ export default function Home({plants}: InferGetStaticPropsType<typeof getStaticP
   return (
     <Layout>
       <Hero {...plants[0]} />
+      <Authors />
       <PlantCollection plants={plants}/>
     </Layout>
   )
