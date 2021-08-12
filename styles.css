@@ -24,8 +24,25 @@ img {
     border-bottom: 1px solid rgb(204, 204, 204);
 }
 
+.hero-text {
+    word-break: break-word;
+    font-size: 2rem;
+    font-weight: bold;
+    text-align: left;
+}
+
+@media screen and (min-width: 600px) {
+    .hero-text {
+        font-size: 3rem;
+    }
+}
+
 @media screen and (min-width: 960px) {
     .navbar {
         padding: 1rem 2rem;
+    }
+
+    .hero-text {
+        font-size: 4rem;
     }
 }

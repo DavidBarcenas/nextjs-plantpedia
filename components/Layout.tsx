@@ -37,7 +37,7 @@ export const Layout = ({title = 'Plantpedia', children}: LayoutProps) => {
 
                 @media screen and (min-width: 960px) {
                     .wrapper {
-                        padding: 5rem 1.5rem;
+                        padding: 2rem 1.5rem;
                     }
                 }
             `}</style>
