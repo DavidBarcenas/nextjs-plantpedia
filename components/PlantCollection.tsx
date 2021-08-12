@@ -9,9 +9,7 @@ export const PlantCollection = ({plants}: PlantCollectionProps) => {
     return (
         <>
             <div className="plant-collection">
-                {
-                    plants.map(plant => <PlantItem key={plant.id} {...plant} />)
-                }
+                { plants.map(plant => <PlantItem key={plant.id} {...plant} />) }
             </div>
 
             <style jsx>{`
@@ -39,17 +37,21 @@ export const PlantCollection = ({plants}: PlantCollectionProps) => {
 
 const PlantItem = ({slug, plantName, image}) => {
     return (
-        <Link href={`/entry/${slug}`}>
-            <a title={`Go to ${plantName}`}>
-                <div>
-                    <img src={image.url} />
-                    <div className="p-4">
-                        <Typography variant="h4">
-                            {plantName}
-                        </Typography>
-                    </div>
-                </div>
-            </a>
-        </Link>
+        <>
+            <Link href={`/entry/${slug}`}>
+                <a title={`Go to ${plantName}`}>
+                    <img src={image.url} className="plant-picture" />
+                    <Typography variant="h4" className="prueba">
+                        {plantName}
+                    </Typography>
+                </a>
+            </Link>
+
+            <style jsx>{`
+                .plant-picture {
+                    margin-bottom: .75rem;
+                }
+            `}</style>
+        </>
     )
 }
