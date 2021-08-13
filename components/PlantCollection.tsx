@@ -35,7 +35,7 @@ export const PlantCollection = ({plants}: PlantCollectionProps) => {
 }
 
 
-const PlantItem = ({slug, plantName, image}) => {
+export const PlantItem = ({slug, plantName, image}) => {
     return (
         <>
             <Link href={`/entry/${slug}`}>

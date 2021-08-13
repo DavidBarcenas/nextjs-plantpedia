@@ -21,7 +21,9 @@ export const Authors = () => {
                                         alt={author.fullName} 
                                         className="author-img" 
                                     />
-                                    <p className="author-name">{author.fullName}</p>
+                                    <p className="author-name">
+                                        {author.fullName}
+                                    </p>
                                 </a>
                             </Link>
                         </li>
