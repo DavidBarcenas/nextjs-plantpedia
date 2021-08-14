@@ -3,6 +3,8 @@
 }
 
 body {
+    font-size: 16px;
+    font-family: 'Cormorant Garamond', Georgia, Cambria, "Times New Roman", Times, serif;
     min-height: 100vh;
     overflow-x: hidden;
     margin: 0;
