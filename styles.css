@@ -39,6 +39,12 @@ ul, ol {
     text-align: left;
 }
 
+.rich-text {
+    font-size: 1.2rem;
+    font-family: Arial, Helvetica, sans-serif;
+    color: #555;
+}
+
 @media screen and (min-width: 600px) {
     .hero-text {
         font-size: 3rem;

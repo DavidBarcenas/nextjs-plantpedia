@@ -45,13 +45,15 @@ const PlantEntryPage = () => {
                 <div className="post-container">
                     <article className="post">
                         <img src={plant.image.url} alt={plant.image.title} />
-                        <h2 className="post-title">{plant.plantName}</h2>
-                        <RichText description={plant.description} />
+                        <div className="post-description">
+                            <h2 className="post-title">{plant.plantName}</h2>
+                            <RichText description={plant.description} />
+                        </div>
                         <footer className="post-footer">
                             <img src={plant.author.photo.url} alt={plant.author.photo.title} />
-                            <div className="article-author">
+                            <div>
                                 <h3>{plant.author.fullName}</h3>
-                                <p>{plant.author.biography}</p>
+                                <p className="post-author-bio">{plant.author.biography}</p>
                                 <div className="flex">
                                     <a
                                         href={plant.author.linkedIn}
@@ -95,29 +97,54 @@ const PlantEntryPage = () => {
                     margin: 0;
                 }
                 .post-footer {
-                    border: 1px solid #ccc;
-                    display: flex;
-                    align-items: center;
+                    /* border: 1px solid #ccc; */
                     padding: 1rem;
+                    margin-bottom: 1rem;
+                    text-align: center;
                 }
-
                 .post-footer img {
-                    width: 150px;
-                    height: 150px;
+                    width: 100px;
+                    height: 100px;
                     border-radius: 50%;
-                    margin-right: 1.5rem;
+                    margin: 0 auto .75rem;
                 }
-
                 .post-footer h3 {
+                    display: block;
                     margin: 0;
                 }
 
-                @media screen and (min-width: 480px) {
+                @media screen and (min-width: 688px) {
+                    .post-title {
+                        font-size: 2.5rem;
+                        margin: 2rem 0;
+                    }
+                    .post-description {
+                        width: 90%;
+                        margin: auto;
+                        margin-bottom: 2.5rem;
+                    }
+                    .post-footer {
+                        display: flex;
+                        align-items: center;
+                        text-align: left;
+                    }
+                    .post-footer img {
+                        width: 150px;
+                        height: 150px;
+                        border-radius: 50%;
+                        margin: 0;
+                        margin-right: 1.5rem;
+                    }
+                    .post-author-bio {
+                        margin: .4rem 0;
+                    }
+                }
+                
+                @media screen and (min-width: 980px) {
                     .post {
                         width: 70%;
                         padding-right: 1.5rem;
                     }
-
                     .post-aside {
                         width: 30%;
                         padding: 0 1rem;

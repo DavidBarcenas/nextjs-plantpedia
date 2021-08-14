@@ -9,7 +9,7 @@ interface RichTextProps {
 const options: Options = {
     renderNode: {
         [BLOCKS.PARAGRAPH]: (_, children) => (
-            <p>{children}</p>
+            <p className="rich-text">{children}</p>
         )
     }
 }
