@@ -23,15 +23,6 @@ export default function Home({plants}: InferGetStaticPropsType<typeof getStaticP
     <Layout>
       <Hero {...plants[0]} />
       <Authors />
-      <div>
-        {
-          plants.slice(2,4).map(plant => (
-            <div>
-              <p>{plant.description.toString()}</p>
-            </div>
-          ))
-        }
-      </div>
       <PlantCollection plants={plants.slice(2)}/>
     </Layout>
   )

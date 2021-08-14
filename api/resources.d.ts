@@ -33,7 +33,11 @@ type Author = {
   linkedIn: string
 }
 
-type RichText = Json
+type RichText = {
+  data: {}
+  content: []
+  nodeType: any
+}
 
 type Plant = {
   id: string
