@@ -1,44 +1,58 @@
-import React, { useEffect, useState } from 'react'
-import Error from 'next/error'
-import { useRouter } from 'next/router';
-import { getPlant, QueryStatus } from '../../api/index';
+import React from 'react'
+import { GetStaticProps, InferGetStaticPropsType } from 'next';
+import { getPlant, getPlantList } from '../../api/index';
 import { RichText } from '@components/RichText';
 import { Layout } from '../../components/Layout';
 
+interface PlantEntryProps {
+    plant: Plant;
+}
 
-const PlantEntryPage = () => {
-    const [status, setStatus] = useState<QueryStatus>('idle')
-    const [plant, setPlant] = useState<Plant | null>(null)
-    const router = useRouter()
-    const slug = router.query.slug
+interface PathType {
+    params: {
+        slug: string;
+    }
+}
 
-    useEffect(() => {
-        if(typeof slug !== 'string') {
-            return
+export const getStaticPaths = async () => {
+    const entries = await getPlantList({ limit: 10 })
+    const paths: PathType[] = entries.map(plant => ({
+        params: {
+            slug: plant.slug
         }
+    }))
 
-        setStatus('loading')
+    return {
+        paths,
+        fallback: false
+    }
+}
 
-        getPlant(slug)
-            .then(resp => {
-                setPlant(resp)
-                setStatus('success')
-            })
-            .catch(() => setStatus('error'))
-    }, [slug])
+export const getStaticProps: GetStaticProps<PlantEntryProps> = async ({ params }) => {
+    const slug = params.slug
 
-    if(status === 'loading' || status === 'idle') {
-       return (
-        <div>
-            loading...
-        </div>
-       )
+    if (typeof slug !== 'string') {
+        return {
+            notFound: true
+        }
     }
 
-    if(!plant || status === 'error') {
-        return <Error statusCode={404} />
-    }
+    try {
+        const plant = await getPlant(slug)
 
+        return {
+            props: {
+                plant
+            }
+        }
+    } catch (error) {
+        return {
+            notFound: true
+        }
+    }
+}
+
+const PlantEntryPage = ({ plant }: InferGetStaticPropsType<typeof getStaticProps>) => {
     return (
         <>
             <Layout>
