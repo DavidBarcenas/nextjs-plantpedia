@@ -74,6 +74,17 @@ ul, ol {
     background: #f7f7f7;
 }
 
+.title-sidebar {
+    background: #222;
+    color: #fff;
+    font-size: 1rem;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    margin: 0;
+    margin-bottom: 1rem;
+    padding: .5rem 1rem;
+}
+
 @media screen and (min-width: 600px) {
     .wrapper {
         padding: 3rem 1rem;

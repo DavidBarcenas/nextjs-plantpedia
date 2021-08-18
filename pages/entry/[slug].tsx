@@ -2,10 +2,14 @@ import React from 'react'
 import { GetStaticProps, InferGetStaticPropsType } from 'next';
 import { getPlant, getPlantList } from '../../api/index';
 import { RichText } from '@components/RichText';
-import { Layout } from '../../components/Layout';
+import { Layout } from '@components/Layout';
+import { SidebarAuthor } from '@components/SidebarAuthor';
+import { SidebarPosts } from '@components/SidebarPosts';
+import { SidebarCategories } from '@components/SidebarCategories';
 
 interface PlantEntryProps {
     plant: Plant;
+    posts: Plant[]
 }
 
 interface PathType {
@@ -39,10 +43,12 @@ export const getStaticProps: GetStaticProps<PlantEntryProps> = async ({ params }
 
     try {
         const plant = await getPlant(slug)
+        const posts = await getPlantList({ limit: 5, skip: 10 })
 
         return {
             props: {
-                plant
+                plant,
+                posts
             },
             revalidate: 5 * 60 // refresh 5 min
         }
@@ -53,11 +59,11 @@ export const getStaticProps: GetStaticProps<PlantEntryProps> = async ({ params }
     }
 }
 
-const PlantEntryPage = ({ plant }: InferGetStaticPropsType<typeof getStaticProps>) => {
+const PlantEntryPage = ({ plant, posts }: InferGetStaticPropsType<typeof getStaticProps>) => {
     return (
         <>
             <Layout>
-                <div className="post-container">
+                <div className="wrapper post-container">
                     <article className="post">
                         <img src={plant.image.url} alt={plant.image.title} />
                         <div className="post-description">
@@ -89,12 +95,9 @@ const PlantEntryPage = ({ plant }: InferGetStaticPropsType<typeof getStaticProps
                         </footer>
                     </article>
                     <aside className="post-aside">
-                        <section>
-                            <h3>Recent Post</h3>
-                        </section>
-                        <section>
-                            <h3>Categories</h3>
-                        </section>
+                        <SidebarPosts posts={posts} />
+                        <SidebarCategories />
+                        <SidebarAuthor author={plant.author} />
                     </aside>
                 </div>
             </Layout>
