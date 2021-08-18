@@ -10,20 +10,21 @@ interface HomeProps {
 }
 
 export const getStaticProps: GetStaticProps<HomeProps> = async () => {
-  const plants = await getPlantList({limit: 10})
+  const plants = await getPlantList({ limit: 10 })
 
   return {
     props: {
       plants
-    }
+    },
+    revalidate: 5 * 60 // refresh 5 min
   }
 }
-export default function Home({plants}: InferGetStaticPropsType<typeof getStaticProps>) {
+export default function Home({ plants }: InferGetStaticPropsType<typeof getStaticProps>) {
   return (
     <Layout>
       <Hero {...plants[0]} />
       <Authors />
-      <PlantCollection plants={plants.slice(2)}/>
+      <PlantCollection plants={plants.slice(2)} />
     </Layout>
   )
 }
