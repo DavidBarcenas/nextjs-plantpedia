@@ -24,7 +24,7 @@ export default function Home({ plants }: InferGetStaticPropsType<typeof getStati
     <Layout>
       <Hero {...plants[0]} />
       <Authors />
-      <PlantCollection plants={plants.slice(2)} />
+      <PlantCollection plants={plants} />
     </Layout>
   )
 }

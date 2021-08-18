@@ -7,7 +7,7 @@ export const useAuthors = () => {
 
     useEffect(() => {
         setStatus('loading')
-        getAuthorList({limit: 4})
+        getAuthorList({ limit: 6 })
             .then(resp => {
                 setAuthors(resp)
                 setStatus('success')
@@ -15,5 +15,5 @@ export const useAuthors = () => {
             .catch(() => setStatus('error'))
     }, [])
 
-    return {status, authors}
+    return { status, authors }
 }

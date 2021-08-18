@@ -27,6 +27,12 @@ ul, ol {
     padding: 0;
 }
 
+.wrapper {
+    padding: 1rem;
+    margin: auto;
+    max-width: 1360px;
+}
+
 .navbar {
     padding:.5rem;
     border-bottom: 1px solid rgb(204, 204, 204);
@@ -39,24 +45,50 @@ ul, ol {
     text-align: left;
 }
 
+.hero-text:hover {
+    text-decoration: underline;
+    text-decoration-thickness: 3px;
+}
+
 .rich-text {
     font-size: 1.2rem;
     font-family: Arial, Helvetica, sans-serif;
     color: #555;
 }
 
+.category {
+    display: inline-block;
+    background: #fee86d;
+    border-radius: 1rem;
+    padding: .3rem 1rem;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: .75rem;
+}
+
+
 @media screen and (min-width: 600px) {
+    .wrapper {
+        padding: 3rem 0;
+    }
+    
     .hero-text {
         font-size: 3rem;
     }
 }
 
 @media screen and (min-width: 960px) {
+    .wrapper {
+        padding: 5rem 0;
+    }
+}
+
+@media screen and (min-width: 1200px) {
     .navbar {
         padding: 1rem 2rem;
     }
 
     .hero-text {
-        font-size: 4rem;
+        font-size: 6rem;
+        line-height: 6.5rem;
     }
 }

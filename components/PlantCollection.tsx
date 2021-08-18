@@ -5,11 +5,11 @@ interface PlantCollectionProps {
     plants: Plant[]
 }
 
-export const PlantCollection = ({plants}: PlantCollectionProps) => {
+export const PlantCollection = ({ plants }: PlantCollectionProps) => {
     return (
         <>
-            <div className="plant-collection">
-                { plants.map(plant => <PlantItem key={plant.id} {...plant} />) }
+            <div className="wrapper plant-collection">
+                {plants.map(plant => <PlantItem key={plant.id} {...plant} />)}
             </div>
 
             <style jsx>{`
@@ -35,7 +35,7 @@ export const PlantCollection = ({plants}: PlantCollectionProps) => {
 }
 
 
-export const PlantItem = ({slug, plantName, image}) => {
+export const PlantItem = ({ slug, plantName, image }) => {
     return (
         <>
             <Link href={`/entry/${slug}`}>

@@ -3,10 +3,10 @@ import { Header } from './Header'
 
 interface LayoutProps {
     title?: string;
-    children: JSX.Element | JSX.Element[] 
+    children: JSX.Element | JSX.Element[]
 }
 
-export const Layout = ({title = 'Plantpedia', children}: LayoutProps) => {
+export const Layout = ({ title = 'Plantpedia', children }: LayoutProps) => {
     return (
         <>
             <Head>
@@ -22,25 +22,11 @@ export const Layout = ({title = 'Plantpedia', children}: LayoutProps) => {
                 />
             </Head>
             <Header />
-            <main className="wrapper">{children}</main>
+            <main>{children}</main>
             {/* 
                 TODO:
                 - Add Footer Component
             */}
-
-            <style jsx>{`
-                .wrapper {
-                    padding: 1rem;
-                    margin: auto;
-                    max-width: 1360px;
-                }
-
-                @media screen and (min-width: 960px) {
-                    .wrapper {
-                        padding: 2rem 1.5rem;
-                    }
-                }
-            `}</style>
         </>
     )
 }
