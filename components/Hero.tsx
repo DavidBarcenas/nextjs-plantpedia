@@ -19,7 +19,7 @@ export const Hero = (plant: Plant) => {
                                 </Typography>
                             </a>
                         </Link>
-                        <p className="hero-author">Author - {plant.author.fullName}</p>
+                        <p className="hero-author">- {plant.author.fullName}</p>
                     </div>
                 </div>
             </div>
@@ -44,7 +44,6 @@ export const Hero = (plant: Plant) => {
                     padding: 0 1rem;
                     transform: translateX(-50%);
                 }
-                
                 .hero-author {
                     font-size: 1rem;
                     margin: 0.5rem 0;
@@ -54,7 +53,6 @@ export const Hero = (plant: Plant) => {
                     .hero-img {
                         max-width: 400px;
                     }
-                    
                     .hero-wrap-text {
                         background: transparent;
                         bottom: 50%;
@@ -68,26 +66,21 @@ export const Hero = (plant: Plant) => {
                     .hero-img {
                         max-width: 600px;
                     }
-
                     .hero-wrapper {
                         max-width: 800px;
                     }
-                    
                 }
                 
                 @media screen and (min-width: 1200px) {
                     .hero-img {
                         max-width: 800px;
                     }
-                    
                     .hero-wrapper {
                         max-width: 1000px;
                     }
-                    
                     .hero-wrap-text {
                         max-width: 400px;
                     }
-                    
                     .hero-author {
                         font-size: 1.2rem;
                     }
