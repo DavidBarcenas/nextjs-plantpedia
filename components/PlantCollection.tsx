@@ -1,16 +1,26 @@
-import Link from 'next/link'
-import { Typography } from '@material-ui/core'
+import { PlantItem } from './PlantItem'
 
 interface PlantCollectionProps {
-    plants: Plant[]
+    plants: Plant[];
+    variant?: 'horizontal' | 'vertical';
 }
 
-export const PlantCollection = ({ plants }: PlantCollectionProps) => {
+export const PlantCollection = ({ plants, variant = 'horizontal' }: PlantCollectionProps) => {
     return (
         <>
-            <div className="wrapper plant-collection">
-                {plants.map(plant => <PlantItem key={plant.id} {...plant} />)}
-            </div>
+            {
+                variant == 'horizontal' ?
+                    (
+                        <div className="wrapper plant-collection">
+                            {plants.map(plant => <PlantItem key={plant.id} plant={plant} showDesc={false} />)}
+                        </div>
+                    ) :
+                    (
+                        <div className="wrapper plant-collection vertical">
+                            {plants.map(plant => <PlantItem key={plant.id} plant={plant} showDesc={true} />)}
+                        </div>
+                    )
+            }
 
             <style jsx>{`
                 .plant-collection {
@@ -28,28 +38,10 @@ export const PlantCollection = ({ plants }: PlantCollectionProps) => {
                         grid-template-columns: repeat(3, 1fr);
                         grid-gap: 2rem;
                     }
-                }
-            `}</style>
-        </>
-    )
-}
 
-
-export const PlantItem = ({ slug, plantName, image }) => {
-    return (
-        <>
-            <Link href={`/entry/${slug}`}>
-                <a title={`Go to ${plantName}`}>
-                    <img src={image.url} className="plant-picture" />
-                    <Typography variant="h4" className="prueba">
-                        {plantName}
-                    </Typography>
-                </a>
-            </Link>
-
-            <style jsx>{`
-                .plant-picture {
-                    margin-bottom: .75rem;
+                    .plant-collection.vertical {
+                        grid-template-columns: repeat(2, 1fr);
+                    }
                 }
             `}</style>
         </>

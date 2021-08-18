@@ -65,10 +65,18 @@ ul, ol {
     font-size: .75rem;
 }
 
+.excerpt {
+    color: #555;
+    font-size: 1.2rem;
+}
+
+.bg-gray {
+    background: #f7f7f7;
+}
 
 @media screen and (min-width: 600px) {
     .wrapper {
-        padding: 3rem 0;
+        padding: 3rem 1rem;
     }
     
     .hero-text {
@@ -78,7 +86,7 @@ ul, ol {
 
 @media screen and (min-width: 960px) {
     .wrapper {
-        padding: 5rem 0;
+        padding: 5rem 1rem;
     }
 }
 
@@ -90,5 +98,9 @@ ul, ol {
     .hero-text {
         font-size: 6rem;
         line-height: 6.5rem;
+    }
+
+    .excerpt {
+        font-size: 1.5rem;
     }
 }
