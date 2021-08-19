@@ -1,3 +1,5 @@
+import { CustomImage } from '@components/CustomImage'
+
 interface SidebarCategoriesProps {
     categories: Category[];
 }
@@ -10,7 +12,15 @@ export const SidebarCategories = ({ categories }: SidebarCategoriesProps) => {
                 {
                     categories.map(category => (
                         <li className="sidebar-categories-item" key={category.id}>
-                            <img src={category.icon.url} alt={category.icon.title} />
+                            <div className="sidebar-categories-img">
+                                <CustomImage
+                                    src={category.icon.url}
+                                    alt={category.icon.title}
+                                    width={80}
+                                    aspectRatio='4:3'
+                                    layout='responsive'
+                                />
+                            </div>
                             <p>{category.title}</p>
                         </li>
                     ))
@@ -28,7 +38,7 @@ export const SidebarCategories = ({ categories }: SidebarCategoriesProps) => {
                     border-bottom: 1px solid #ccc;
                     padding: .5em 0;
                 }
-                .sidebar-categories-item img {
+                .sidebar-categories-img {
                     width: 80px;
                     margin-right: .75rem;
                 }

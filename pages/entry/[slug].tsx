@@ -45,7 +45,7 @@ export const getStaticProps: GetStaticProps<PlantEntryProps> = async ({ params }
 
     try {
         const plant = await getPlant(slug)
-        const posts = await getPlantList({ limit: 5, skip: 10 })
+        const posts = await getPlantList({ limit: 6, skip: 10 })
         const categories = await getCategoryList()
 
         return {
