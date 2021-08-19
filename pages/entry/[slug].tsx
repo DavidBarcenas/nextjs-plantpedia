@@ -1,6 +1,6 @@
 import React from 'react'
 import { GetStaticProps, InferGetStaticPropsType } from 'next';
-import { getPlant, getPlantList } from '../../api/index';
+import { getPlant, getPlantList, getCategoryList } from '../../api/index';
 import { RichText } from '@components/RichText';
 import { Layout } from '@components/Layout';
 import { SidebarAuthor } from '@components/SidebarAuthor';
@@ -9,7 +9,8 @@ import { SidebarCategories } from '@components/SidebarCategories';
 
 interface PlantEntryProps {
     plant: Plant;
-    posts: Plant[]
+    posts: Plant[];
+    categories: Category[]
 }
 
 interface PathType {
@@ -44,11 +45,13 @@ export const getStaticProps: GetStaticProps<PlantEntryProps> = async ({ params }
     try {
         const plant = await getPlant(slug)
         const posts = await getPlantList({ limit: 5, skip: 10 })
+        const categories = await getCategoryList()
 
         return {
             props: {
                 plant,
-                posts
+                posts,
+                categories
             },
             revalidate: 5 * 60 // refresh 5 min
         }
@@ -59,7 +62,7 @@ export const getStaticProps: GetStaticProps<PlantEntryProps> = async ({ params }
     }
 }
 
-const PlantEntryPage = ({ plant, posts }: InferGetStaticPropsType<typeof getStaticProps>) => {
+const PlantEntryPage = ({ plant, posts, categories }: InferGetStaticPropsType<typeof getStaticProps>) => {
     return (
         <>
             <Layout>
@@ -70,34 +73,11 @@ const PlantEntryPage = ({ plant, posts }: InferGetStaticPropsType<typeof getStat
                             <h2 className="post-title">{plant.plantName}</h2>
                             <RichText description={plant.description} />
                         </div>
-                        <footer className="post-footer">
-                            <img src={plant.author.photo.url} alt={plant.author.photo.title} />
-                            <div>
-                                <h3>{plant.author.fullName}</h3>
-                                <p className="post-author-bio">{plant.author.biography}</p>
-                                <div className="flex">
-                                    <a
-                                        href={plant.author.linkedIn}
-                                        title={`Follow ${plant.author.fullName} on LinkedIn`}
-                                        target="_blank"
-                                    >
-                                        LI
-                                    </a>
-                                    <a
-                                        href={plant.author.twitter}
-                                        title={`Follow ${plant.author.fullName} on Twitter`}
-                                        target="_blank"
-                                    >
-                                        TW
-                                    </a>
-                                </div>
-                            </div>
-                        </footer>
+                        <SidebarAuthor author={plant.author} />
                     </article>
                     <aside className="post-aside">
                         <SidebarPosts posts={posts} />
-                        <SidebarCategories />
-                        <SidebarAuthor author={plant.author} />
+                        <SidebarCategories categories={categories} />
                     </aside>
                 </div>
             </Layout>
@@ -111,23 +91,10 @@ const PlantEntryPage = ({ plant, posts }: InferGetStaticPropsType<typeof getStat
                     font-size: 1.5rem;
                     margin: 1rem 0;
                 }
+                .post-aside {
+                    width: 100%;
+                }
                 .post-aside h3 {
-                    margin: 0;
-                }
-                .post-footer {
-                    /* border: 1px solid #ccc; */
-                    padding: 1rem;
-                    margin-bottom: 1rem;
-                    text-align: center;
-                }
-                .post-footer img {
-                    width: 100px;
-                    height: 100px;
-                    border-radius: 50%;
-                    margin: 0 auto .75rem;
-                }
-                .post-footer h3 {
-                    display: block;
                     margin: 0;
                 }
 
@@ -140,21 +107,6 @@ const PlantEntryPage = ({ plant, posts }: InferGetStaticPropsType<typeof getStat
                         width: 90%;
                         margin: auto;
                         margin-bottom: 2.5rem;
-                    }
-                    .post-footer {
-                        display: flex;
-                        align-items: center;
-                        text-align: left;
-                    }
-                    .post-footer img {
-                        width: 150px;
-                        height: 150px;
-                        border-radius: 50%;
-                        margin: 0;
-                        margin-right: 1.5rem;
-                    }
-                    .post-author-bio {
-                        margin: .4rem 0;
                     }
                 }
                 
