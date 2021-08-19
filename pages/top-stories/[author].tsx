@@ -1,21 +1,61 @@
 import { useState } from 'react';
+import { GetServerSideProps, InferGetServerSidePropsType } from 'next';
 import Alert from '@material-ui/lab/Alert'
 import { Layout } from '@components/Layout';
 import { AutorTopStories } from '@components/AutorTopStories';
+import { TabItem, VerticalTabs } from '@components/Tabs';
+import { getAuthorList } from '@api/index';
 
 interface TopStoriesProps {
     authors: Author[];
-    currentAuthor: Author;
-    status: 'error' | 'succes';
+    currentAuthor: Author['handle'];
+    status: 'error' | 'success';
 }
 
-interface TabItem {
-    label: string;
-    value: string;
-    content: React.ReactNode;
+export const getServerSideProps: GetServerSideProps<TopStoriesProps> = async ({ params }) => {
+    const authorHandle = String(params?.author)
+
+    try {
+        const authors = await getAuthorList({ limit: 10 })
+        const doesAuthorExist = authors.some(
+            (author) => author.handle === authorHandle
+        )
+
+        // Validates that the author exists and redirects to the first one in the list otherwise.
+        if (authors.length > 0 && !doesAuthorExist) {
+            const firstAuthor = authors[0].handle
+
+            return {
+                redirect: {
+                    destination: `/top-stories/${firstAuthor}`,
+                    permanent: false,
+                },
+            }
+        }
+
+        return {
+            props: {
+                authors,
+                currentAuthor: authorHandle,
+                status: 'success',
+            },
+        }
+    } catch (error) {
+        return {
+            props: {
+                authors: [],
+                currentAuthor: authorHandle,
+                status: 'error',
+            },
+        }
+    }
 }
 
-const TopStories = ({ authors, currentAuthor, status }: TopStoriesProps) => {
+const TopStories = ({
+    authors,
+    currentAuthor,
+    status
+}: InferGetServerSidePropsType<typeof getServerSideProps>) => {
     const [currentTab, setCurrentTab] = useState(currentAuthor)
 
     if (authors.length === 0 || status === 'error') {
@@ -48,7 +88,11 @@ const TopStories = ({ authors, currentAuthor, status }: TopStoriesProps) => {
         <Layout>
             <main>
                 <h2>Top 10 Stories</h2>
-                {/* <VerticalTabs /> */}
+                <VerticalTabs
+                    tabs={tabs}
+                    currentTab={currentTab}
+                    onTabChange={(_, newValue) => setCurrentTab(newValue)}
+                />
             </main>
         </Layout>
     )
