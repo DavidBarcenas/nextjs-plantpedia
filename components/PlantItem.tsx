@@ -1,13 +1,17 @@
 import Link from 'next/link'
-import { Excerpt } from '@components/Excerpt';
 import Button from '@material-ui/core/Button'
+import { Excerpt } from '@components/Excerpt';
+import { CustomImage } from '@components/CustomImage';
+import { AspectRatio } from './CustomImage';
 
 interface PlantItemProps {
     plant: Plant;
     showDesc: Boolean;
+    width?: number;
+    aspecRatio?: AspectRatio;
 }
 
-export const PlantItem = ({ plant, showDesc }: PlantItemProps) => {
+export const PlantItem = ({ plant, showDesc, width = 460, aspecRatio = '4:3' }: PlantItemProps) => {
     const { slug, plantName, image, category, description } = plant
 
     return (
@@ -16,7 +20,12 @@ export const PlantItem = ({ plant, showDesc }: PlantItemProps) => {
                 <Link href={`/entry/${slug}`}>
                     <a title={`Go to ${plantName}`}>
                         <div className="plant-picture">
-                            <img src={image.url} />
+                            <CustomImage
+                                src={image.url}
+                                layout='responsive'
+                                width={width}
+                                aspectRatio={aspecRatio}
+                            />
                             <p className="category">{category.title}</p>
                         </div>
                         <h4 className="plant-title">{plantName}</h4>

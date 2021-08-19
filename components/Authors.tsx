@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import { CustomImage } from '@components/CustomImage'
 
 interface AuthorsProps {
     authors: Author[]
@@ -13,11 +14,15 @@ export const Authors = ({ authors }: AuthorsProps) => {
                         <li key={author.id} className="author-item">
                             <Link href={`/top-stories/${author.handle}`}>
                                 <a title={`See latest stories from ${author.fullName}`}>
-                                    <img
-                                        src={author.photo.url}
-                                        alt={author.fullName}
-                                        className="author-img"
-                                    />
+                                    <div className="author-img">
+                                        <CustomImage
+                                            src={author.photo.url}
+                                            alt={author.fullName}
+                                            aspectRatio='1:1'
+                                            layout='responsive'
+                                            width={150}
+                                        />
+                                    </div>
                                     <p className="author-name">
                                         {author.fullName}
                                     </p>

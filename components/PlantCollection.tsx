@@ -12,12 +12,25 @@ export const PlantCollection = ({ plants, variant = 'horizontal' }: PlantCollect
                 variant == 'horizontal' ?
                     (
                         <div className="wrapper plant-collection">
-                            {plants.map(plant => <PlantItem key={plant.id} plant={plant} showDesc={false} />)}
+                            {plants.map(plant => (
+                                <PlantItem
+                                    key={plant.id}
+                                    plant={plant}
+                                    showDesc={false}
+                                />
+                            ))}
                         </div>
                     ) :
                     (
                         <div className="wrapper plant-collection vertical">
-                            {plants.map(plant => <PlantItem key={plant.id} plant={plant} showDesc={true} />)}
+                            {plants.map(plant => (
+                                <PlantItem
+                                    key={plant.id}
+                                    plant={plant}
+                                    showDesc={true}
+                                    aspecRatio='3:2'
+                                />
+                            ))}
                         </div>
                     )
             }

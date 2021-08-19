@@ -1,12 +1,21 @@
 import Link from 'next/link'
 import { Typography } from '@material-ui/core'
+import { CustomImage } from '@components/CustomImage'
 
 export const Hero = (plant: Plant) => {
     return (
         <>
             <div className="wrapper hero-container">
                 <div className="hero-wrapper">
-                    <img src={plant.image.url} alt={plant.plantName} className="hero-img" />
+                    <div className="hero-img">
+                        <CustomImage
+                            src={plant.image.url}
+                            alt={plant.plantName}
+                            width={400}
+                            layout='responsive'
+                            aspectRatio='3:2'
+                        />
+                    </div>
                     <div className="hero-wrap-text">
                         <p className="category">{plant.category.title}</p>
                         <Link href={`/entry/${plant.slug}`}>
@@ -30,10 +39,6 @@ export const Hero = (plant: Plant) => {
                     max-width: 600px;
                     margin: auto;
                 }
-                .hero-img {
-                    width: 100%;
-                    margin-left: auto;
-                }
                 .hero-wrap-text {
                     background: rgba(255, 255, 255, .75);
                     position: absolute;
@@ -47,6 +52,9 @@ export const Hero = (plant: Plant) => {
                 .hero-author {
                     font-size: 1rem;
                     margin: 0.5rem 0;
+                }
+                .hero-img {
+                    margin-left: auto;
                 }
                 
                 @media screen and (min-width: 480px) {
