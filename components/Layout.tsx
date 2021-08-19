@@ -1,4 +1,5 @@
 import Head from 'next/head'
+import { Footer } from './Footer'
 import { Header } from './Header'
 
 interface LayoutProps {
@@ -23,10 +24,7 @@ export const Layout = ({ title = 'Plantpedia', children }: LayoutProps) => {
             </Head>
             <Header />
             <main>{children}</main>
-            {/* 
-                TODO:
-                - Add Footer Component
-            */}
+            <Footer />
         </>
     )
 }
