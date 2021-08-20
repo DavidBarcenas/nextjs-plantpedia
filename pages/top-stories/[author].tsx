@@ -1,11 +1,10 @@
-import { useState } from 'react';
 import { GetServerSideProps, InferGetServerSidePropsType } from 'next';
-import Alert from '@material-ui/lab/Alert'
 import { Layout } from '@components/Layout';
 import { AutorTopStories } from '@components/AutorTopStories';
 import { TabItem, VerticalTabs } from '@components/Tabs';
 import { getAuthorList } from '@api/index';
 import { useRouter } from 'next/router';
+import ErrorPage from '../_error'
 
 interface TopStoriesProps {
     authors: Author[];
@@ -61,21 +60,7 @@ const TopStories = ({
 
     if (typeof currentAuthor !== 'string' || authors.length === 0 || status === 'error') {
         return (
-            <Layout>
-                <main className="wrapper">
-                    <div>
-                        <h2>Huh, something is not right 🙇‍♀️</h2>
-                    </div>
-                    <article>
-                        <Alert severity="error">
-                            {status === 'error'
-                                ? 'There was an error querying the information. Inspecting the request in the Network tab of DevTools could give more information'
-                                : 'The information was not found. Forgot to configure content on Contentful?'
-                            }
-                        </Alert>
-                    </article>
-                </main>
-            </Layout>
+            <ErrorPage message="There is no information available. Did you forget to set up your Contenful space's content?" />
         )
     }
 
