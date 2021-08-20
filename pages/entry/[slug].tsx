@@ -34,7 +34,7 @@ export const getStaticPaths = async () => {
     }
 }
 
-export const getStaticProps: GetStaticProps<PlantEntryProps> = async ({ params }) => {
+export const getStaticProps: GetStaticProps<PlantEntryProps> = async ({ params, preview }) => {
     const slug = params.slug
 
     if (typeof slug !== 'string') {
@@ -44,7 +44,7 @@ export const getStaticProps: GetStaticProps<PlantEntryProps> = async ({ params }
     }
 
     try {
-        const plant = await getPlant(slug)
+        const plant = await getPlant(slug, preview)
         const posts = await getPlantList({ limit: 6, skip: 10 })
         const categories = await getCategoryList()
 
