@@ -103,6 +103,13 @@ const TopStories = ({
                     margin-bottom: 2rem;
                     text-align: center;
                 }
+
+                @media screen and (min-width: 960px) {
+                    .stories-title {
+                        font-size: 4rem;
+                        margin-bottom: 4rem;
+                    }
+                }
             `}</style>
         </>
     )
