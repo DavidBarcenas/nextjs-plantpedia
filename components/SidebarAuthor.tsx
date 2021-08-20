@@ -31,7 +31,6 @@ export const SidebarAuthor = ({ author }: SidebarAuthorProps) => {
                 .author-img {
                     width: 130px;
                     height: 130px;
-                    border-radius: 50%;
                     object-fit: cover;
                     margin-right: 1rem;
                 }

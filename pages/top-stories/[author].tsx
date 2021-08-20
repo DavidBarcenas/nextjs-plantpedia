@@ -5,6 +5,7 @@ import { Layout } from '@components/Layout';
 import { AutorTopStories } from '@components/AutorTopStories';
 import { TabItem, VerticalTabs } from '@components/Tabs';
 import { getAuthorList } from '@api/index';
+import { useRouter } from 'next/router';
 
 interface TopStoriesProps {
     authors: Author[];
@@ -53,12 +54,12 @@ export const getServerSideProps: GetServerSideProps<TopStoriesProps> = async ({ 
 
 const TopStories = ({
     authors,
-    currentAuthor,
     status
 }: InferGetServerSidePropsType<typeof getServerSideProps>) => {
-    const [currentTab, setCurrentTab] = useState(currentAuthor)
+    const router = useRouter()
+    const currentAuthor = router.query.author
 
-    if (authors.length === 0 || status === 'error') {
+    if (typeof currentAuthor !== 'string' || authors.length === 0 || status === 'error') {
         return (
             <Layout>
                 <main className="wrapper">
@@ -91,8 +92,10 @@ const TopStories = ({
                     <h2 className="stories-title">Top 10 Stories</h2>
                     <VerticalTabs
                         tabs={tabs}
-                        currentTab={currentTab}
-                        onTabChange={(_, newValue) => setCurrentTab(newValue)}
+                        currentTab={currentAuthor}
+                        onTabChange={(_, newValue) => {
+                            router.push(`/top-stories/${newValue}`, undefined, { shallow: true })
+                        }}
                     />
                 </main>
             </Layout>
