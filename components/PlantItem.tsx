@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import Button from '@material-ui/core/Button'
 import { Excerpt } from '@components/Excerpt';
-import { CustomImage } from '@components/CustomImage';
+import { CustomImage, FitValues, LayoutTypes } from '@components/CustomImage';
 import { AspectRatio } from './CustomImage';
 
 interface PlantItemProps {
@@ -9,9 +9,11 @@ interface PlantItemProps {
     showDesc: Boolean;
     width?: number;
     aspecRatio?: AspectRatio;
+    fit?: FitValues;
+    layout?: LayoutTypes
 }
 
-export const PlantItem = ({ plant, showDesc, width = 460, aspecRatio = '4:3' }: PlantItemProps) => {
+export const PlantItem = ({ plant, showDesc, width = 460, aspecRatio = '16:9', fit = 'scale', layout = 'intrinsic' }: PlantItemProps) => {
     const { slug, plantName, image, category, description } = plant
 
     return (
@@ -22,9 +24,10 @@ export const PlantItem = ({ plant, showDesc, width = 460, aspecRatio = '4:3' }: 
                         <div className="plant-picture">
                             <CustomImage
                                 src={image.url}
-                                layout='responsive'
+                                layout={layout}
                                 width={width}
                                 aspectRatio={aspecRatio}
+                                fit={fit}
                             />
                             <p className="category">{category.title}</p>
                         </div>

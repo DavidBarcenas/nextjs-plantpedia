@@ -61,7 +61,7 @@ const TopStories = ({
     if (authors.length === 0 || status === 'error') {
         return (
             <Layout>
-                <main>
+                <main className="wrapper">
                     <div>
                         <h2>Huh, something is not right 🙇‍♀️</h2>
                     </div>
@@ -85,16 +85,26 @@ const TopStories = ({
     }))
 
     return (
-        <Layout>
-            <main>
-                <h2>Top 10 Stories</h2>
-                <VerticalTabs
-                    tabs={tabs}
-                    currentTab={currentTab}
-                    onTabChange={(_, newValue) => setCurrentTab(newValue)}
-                />
-            </main>
-        </Layout>
+        <>
+            <Layout>
+                <main className="wrapper">
+                    <h2 className="stories-title">Top 10 Stories</h2>
+                    <VerticalTabs
+                        tabs={tabs}
+                        currentTab={currentTab}
+                        onTabChange={(_, newValue) => setCurrentTab(newValue)}
+                    />
+                </main>
+            </Layout>
+
+            <style jsx>{`
+                .stories-title {
+                    margin: 0;
+                    margin-bottom: 2rem;
+                    text-align: center;
+                }
+            `}</style>
+        </>
     )
 }
 

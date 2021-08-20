@@ -1,6 +1,6 @@
-import React from 'react'
 import Tabs from '@material-ui/core/Tabs'
-import { makeStyles, Tab } from '@material-ui/core'
+import { useMediaQuery } from '@material-ui/core'
+import { Tab } from '@material-ui/core'
 
 export interface TabItem {
     label: string;
@@ -21,15 +21,8 @@ interface TabsProps {
     onTabChange: (_: React.ChangeEvent<{}>, newValue: string) => void;
 }
 
-const useStyles = makeStyles((theme) => ({
-    tabs: {
-        borderRight: `1px solid ${theme.palette.divider}`,
-        flexShrink: 0,
-    },
-}))
-
 export const VerticalTabs = ({ tabs, currentTab, onTabChange }: TabsProps) => {
-    const classes = useStyles()
+    const matches = useMediaQuery('(min-width:960px)');
 
     const { tabItems, tabPanels } = tabs.reduce<{
         tabItems: React.ReactNodeArray
@@ -58,18 +51,28 @@ export const VerticalTabs = ({ tabs, currentTab, onTabChange }: TabsProps) => {
     })
 
     return (
-        <section>
-            <Tabs
-                orientation='vertical'
-                value={currentTab}
-                onChange={onTabChange}
-                aria-label='Author Top Stories'
-                className={classes.tabs}
-            >
-                {tabItems}
-            </Tabs>
-            {tabPanels}
-        </section>
+        <>
+            <section className="top-stories">
+                <Tabs
+                    orientation={matches ? 'vertical' : 'horizontal'}
+                    value={currentTab}
+                    onChange={onTabChange}
+                    aria-label='Author Top Stories'
+                    className='tabs'
+                >
+                    {tabItems}
+                </Tabs>
+                {tabPanels}
+            </section>
+
+            <style jsx>{`
+                @media screen and (min-width: 960px) {
+                    .top-stories {
+                        display: flex;
+                    }
+                }
+            `}</style>
+        </>
     )
 }
 

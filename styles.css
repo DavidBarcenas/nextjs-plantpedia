@@ -85,6 +85,14 @@ ul, ol {
     padding: .5rem 1rem;
 }
 
+.MuiTab-root {
+    margin: auto;
+}
+
+.MuiTabs-fixed {
+    overflow-x: scroll !important;
+}
+
 @media screen and (min-width: 600px) {
     .wrapper {
         padding: 3rem 1rem;
@@ -99,6 +107,16 @@ ul, ol {
     .wrapper {
         padding: 5rem 1rem;
     }
+
+    .MuiTabs-fixed {
+        overflow: hidden !important;
+    }
+
+    .top-stories .MuiTabs-vertical {
+        flex-shrink: 0;
+        border-right: 1px solid #ccc;
+    }
+    
 }
 
 @media screen and (min-width: 1200px) {

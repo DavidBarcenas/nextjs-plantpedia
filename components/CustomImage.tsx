@@ -2,7 +2,7 @@ import Image, { ImageLoaderProps } from 'next/image'
 import { useCallback } from 'react';
 
 export type AspectRatio = '1:1' | '4:3' | '16:9' | '3:2' | '9:12'
-export type LayoutTypes = 'fill' | 'fixed' | 'intrinsic' | 'responsive'
+export type LayoutTypes = 'fixed' | 'intrinsic' | 'responsive'
 export type FitValues = 'pad' | 'fill' | 'crop' | 'scale';
 
 interface CustomImageProps {
@@ -30,7 +30,7 @@ const calcAspectRatio = (aspectRatio: AspectRatio, width: number) => {
 }
 
 export const CustomImage = (props: CustomImageProps) => {
-    const { layout, src, width, aspectRatio, alt, className, fit = 'scale' } = props
+    const { layout, src, width, aspectRatio, alt, className, fit = 'fill' } = props
     const height = calcAspectRatio(aspectRatio, width)
 
     const imageLoader = useCallback(

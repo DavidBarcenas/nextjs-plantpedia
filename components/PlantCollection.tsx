@@ -17,6 +17,8 @@ export const PlantCollection = ({ plants, variant = 'horizontal' }: PlantCollect
                                     key={plant.id}
                                     plant={plant}
                                     showDesc={false}
+                                    aspecRatio='4:3'
+                                    fit='fill'
                                 />
                             ))}
                         </div>
@@ -29,6 +31,7 @@ export const PlantCollection = ({ plants, variant = 'horizontal' }: PlantCollect
                                     plant={plant}
                                     showDesc={true}
                                     aspecRatio='3:2'
+                                    layout='responsive'
                                 />
                             ))}
                         </div>
