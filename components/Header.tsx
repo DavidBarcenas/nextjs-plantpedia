@@ -2,12 +2,16 @@ import { PropsWithChildren } from 'react'
 import Link, { LinkProps } from 'next/link'
 import { Navbar } from "@ui/Navbar"
 import Button from '@material-ui/core/Button'
+import { PreviewModeBanner } from './PreviewModeBanner'
 
 export const Header = () => {
     return (
-        <Navbar title="🌿 Plantpedia">
-            <NavLink href="/top-stories">Top Stories</NavLink>
-        </Navbar>
+        <>
+            <PreviewModeBanner />
+            <Navbar title="🌿 Plantpedia">
+                <NavLink href="/top-stories">Top Stories</NavLink>
+            </Navbar>
+        </>
     )
 }
 
