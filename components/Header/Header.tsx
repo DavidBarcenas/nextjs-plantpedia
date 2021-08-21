@@ -15,7 +15,7 @@ export const Header = () => {
     )
 }
 
-function NavLink({ children, ...linkProps }: PropsWithChildren<LinkProps>) {
+const NavLink = ({ children, ...linkProps }: PropsWithChildren<LinkProps>) => {
     return (
         <Link {...linkProps} passHref>
             <Button color="inherit" variant="text" component="a">

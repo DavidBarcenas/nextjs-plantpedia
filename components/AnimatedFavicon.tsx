@@ -4,20 +4,25 @@ import { Typography } from '@material-ui/core'
 
 const favicons = ['🌿', '🍃', '🍀', '🌷', '🌸', '🌚', '🌲', '🌵', '🌾', '🌱', '🌝', '🌴']
 
-export const AnimatedFavicon = ({title}: {title: string}) => {
+interface Props {
+    title: string;
+    className?: string;
+}
+
+export const AnimatedFavicon = ({ title, className }: Props) => {
     const [favIndex, setFavIndex] = useState(0)
     const [isHovering, setIsHovering] = useState(false)
 
     const toggleFavicon = () => setIsHovering(!isHovering)
 
     useEffect(() => {
-        if(!isHovering) return;
+        if (!isHovering) return;
 
         const intervalId = setInterval(() => {
             setFavIndex((prevValue) => {
                 const nextValue = prevValue + 1
 
-                if(nextValue >= favicons.length) {
+                if (nextValue >= favicons.length) {
                     return 0
                 }
                 return nextValue
@@ -34,12 +39,12 @@ export const AnimatedFavicon = ({title}: {title: string}) => {
     return (
         <>
             <Head>
-            <link
-                rel="icon"
-                href={`data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>${favicon}</text></svg>`}
-            />
+                <link
+                    rel="icon"
+                    href={`data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>${favicon}</text></svg>`}
+                />
             </Head>
-            <Typography variant="h4" component="h1">
+            <Typography variant="h4" component="h1" className={className}>
                 <a
                     href="/"
                     onMouseEnter={toggleFavicon}
