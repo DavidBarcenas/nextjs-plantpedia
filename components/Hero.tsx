@@ -7,8 +7,8 @@ export const Hero = ({ image, plantName, category, slug, author }: Plant) => {
     const classes = useStyles();
 
     return (
-        <div className='wrapper'>
-            <div className={classes.hero}>
+        <section className='wrapper'>
+            <article className={classes.hero}>
                 <div className={classes.heroWrapText}>
                     <p className="category">{category.title}</p>
                     <Link href={`/entry/${slug}`}>
@@ -41,8 +41,8 @@ export const Hero = ({ image, plantName, category, slug, author }: Plant) => {
                         />
                     </div>
                 </div>
-            </div>
-        </div>
+            </article>
+        </section>
     )
 }
 

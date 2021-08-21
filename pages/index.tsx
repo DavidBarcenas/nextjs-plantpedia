@@ -1,7 +1,7 @@
 import { GetStaticProps, InferGetStaticPropsType } from 'next'
 import { getAuthorList, getPlantList } from '@api'
 import { Layout } from '@components/Layout'
-import { Authors } from '@components/Authors'
+import { AuthorCollection } from '@components/AuthorCollection'
 import { PlantCollection } from '@components/PlantCollection'
 import { Hero } from '@components/Hero'
 
@@ -26,7 +26,7 @@ export default function Home({ plants, authors }: InferGetStaticPropsType<typeof
   return (
     <Layout>
       <Hero {...plants[0]} />
-      <Authors authors={authors} />
+      <AuthorCollection authors={authors} />
       <PlantCollection plants={plants.slice(1, 3)} variant={'vertical'} />
       <div className="bg-gray">
         <PlantCollection plants={plants.slice(3, 9)} />

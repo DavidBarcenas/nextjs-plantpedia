@@ -2,6 +2,7 @@ import { createTheme } from '@material-ui/core/styles'
 import { grey, common, lightGreen } from '@material-ui/core/colors'
 
 const fontSerif = `'Cormorant Garamond', ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;`
+const fontSansSerif = 'Helvetica, Arial, sans-serif'
 
 export const theme = createTheme({
     palette: {
@@ -15,14 +16,17 @@ export const theme = createTheme({
             dark: '#e1ffb1',
             light: '#7da453',
         },
-        divider: grey['300']
+        divider: grey['300'],
+        background: {
+            default: '#f7f7f7'
+        }
     },
     shape: {
         borderRadius: 2,
     },
     typography: {
         fontSize: 16,
-        fontFamily: 'Helvetica, Arial, sans-serif',
+        fontFamily: fontSansSerif,
         h1: {
             fontFamily: fontSerif,
             fontSize: '3.75rem',
