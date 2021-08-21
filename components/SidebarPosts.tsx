@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import { CustomImage } from '@components/CustomImage'
 
 interface SidebarPostsProps {
     posts: Plant[]
@@ -14,7 +15,15 @@ export const SidebarPosts = ({ posts }: SidebarPostsProps) => {
                         <li className="post-sidebar-item" key={post.id}>
                             <Link href={`/entry/${post.slug}`}>
                                 <a title={`Go to ${post.plantName}`}>
-                                    <img src={post.image.url} alt={post.image.title} />
+                                    <div className="post-img">
+                                        <CustomImage
+                                            src={post.image.url}
+                                            alt={post.image.title}
+                                            aspectRatio='16:9'
+                                            layout='intrinsic'
+                                            width={150}
+                                        />
+                                    </div>
                                     <h3>{post.plantName}</h3>
                                 </a>
                             </Link>
@@ -32,19 +41,22 @@ export const SidebarPosts = ({ posts }: SidebarPostsProps) => {
                 }
                 .post-sidebar-item a {
                     display: flex;
+                    align-items: center;
+                    margin-bottom: 1.5rem;
                 }
                 .post-sidebar-item a:hover {
                     text-decoration: underline;
                 }
-                .post-sidebar-item img {
-                    width: 150px;
+                .post-img {
+                    width: 130px;
                     max-height: 100px;
                     margin-right: .75rem;
-                    margin-bottom: 1rem;
-                    object-fit: cover; 
+                    position: relative;
+                    overflow: hidden;
                 }
                 .post-sidebar-item h3 {
                     margin: 0;
+                    width: calc(100% - 150px);
                 }
             `}</style>
         </>

@@ -6,6 +6,7 @@ import { Layout } from '@components/Layout';
 import { SidebarAuthor } from '@components/SidebarAuthor';
 import { SidebarPosts } from '@components/SidebarPosts';
 import { SidebarCategories } from '@components/SidebarCategories';
+import { CustomImage } from '@components/CustomImage'
 
 interface PlantEntryProps {
     plant: Plant;
@@ -33,7 +34,7 @@ export const getStaticPaths = async () => {
     }
 }
 
-export const getStaticProps: GetStaticProps<PlantEntryProps> = async ({ params }) => {
+export const getStaticProps: GetStaticProps<PlantEntryProps> = async ({ params, preview }) => {
     const slug = params.slug
 
     if (typeof slug !== 'string') {
@@ -43,8 +44,8 @@ export const getStaticProps: GetStaticProps<PlantEntryProps> = async ({ params }
     }
 
     try {
-        const plant = await getPlant(slug)
-        const posts = await getPlantList({ limit: 5, skip: 10 })
+        const plant = await getPlant(slug, preview)
+        const posts = await getPlantList({ limit: 6, skip: 10 })
         const categories = await getCategoryList()
 
         return {
@@ -68,7 +69,13 @@ const PlantEntryPage = ({ plant, posts, categories }: InferGetStaticPropsType<ty
             <Layout>
                 <div className="wrapper post-container">
                     <article className="post">
-                        <img src={plant.image.url} alt={plant.image.title} />
+                        <CustomImage
+                            src={plant.image.url}
+                            alt={plant.image.title}
+                            aspectRatio='3:2'
+                            layout='responsive'
+                            width={800}
+                        />
                         <div className="post-description">
                             <h2 className="post-title">{plant.plantName}</h2>
                             <RichText description={plant.description} />
