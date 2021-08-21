@@ -1,20 +1,6 @@
-import Image, { ImageLoaderProps } from 'next/image'
 import { useCallback } from 'react';
-
-export type AspectRatio = '1:1' | '4:3' | '16:9' | '3:2' | '9:12'
-export type LayoutTypes = 'fixed' | 'intrinsic' | 'responsive'
-export type FitValues = 'pad' | 'fill' | 'crop' | 'scale';
-
-interface CustomImageProps {
-    layout: LayoutTypes,
-    aspectRatio: AspectRatio,
-    fit?: FitValues,
-    src: string;
-    width: number;
-    height?: never;
-    alt?: string;
-    className?: string;
-}
+import NextImage, { ImageLoaderProps } from 'next/image'
+import { AspectRatio, CustomImageProps } from 'types/imageTypes';
 
 const toRatio = {
     '1:1': 1,
@@ -29,27 +15,23 @@ const calcAspectRatio = (aspectRatio: AspectRatio, width: number) => {
     return Math.floor(width * ratio);
 }
 
-export const CustomImage = (props: CustomImageProps) => {
-    const { layout, src, width, aspectRatio, alt, className, fit = 'fill' } = props
+export const CustomImage = ({ width, aspectRatio, fit = 'fill', ...nextImageProps }: CustomImageProps) => {
     const height = calcAspectRatio(aspectRatio, width)
 
     const imageLoader = useCallback(
         (props: ImageLoaderProps) => {
-            const loaderHeight = calcAspectRatio(aspectRatio, props.width)
-            return `${props.src}?w=${props.width}&h=${loaderHeight}&fit=${fit}`
+            const height = calcAspectRatio(aspectRatio, props.width)
+            return `${props.src}?w=${props.width}&h=${height}&fit=${fit}`
         },
         [aspectRatio, fit],
     )
 
     return (
-        <Image
-            src={src}
-            layout={layout}
+        <NextImage
+            {...nextImageProps}
             width={width}
             height={height}
             loader={imageLoader}
-            alt={alt}
-            className={className}
         />
     )
 }

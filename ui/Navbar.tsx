@@ -3,7 +3,7 @@ import { AnimatedFavicon } from '@components/AnimatedFavicon'
 import { makeStyles } from '@material-ui/core'
 import { theme } from './theme';
 
-interface Props {
+type Props = {
     title: string;
     children: React.ReactNode
 }

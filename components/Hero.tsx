@@ -1,99 +1,88 @@
 import Link from 'next/link'
 import { Typography } from '@material-ui/core'
+import { makeStyles } from '@material-ui/core';
 import { CustomImage } from '@components/CustomImage'
 
-export const Hero = (plant: Plant) => {
+export const Hero = ({ image, plantName, category, slug, author }: Plant) => {
+    const classes = useStyles();
+
     return (
-        <>
-            <div className="wrapper hero-container">
-                <div className="hero-wrapper">
-                    <div className="hero-img">
+        <div className='wrapper'>
+            <div className={classes.hero}>
+                <div className={classes.heroWrapText}>
+                    <p className="category">{category.title}</p>
+                    <Link href={`/entry/${slug}`}>
+                        <a title={`Go to ${plantName}`}>
+                            <Typography
+                                variant="h1"
+                                component="h2"
+                                className={classes.heroText}>
+                                {plantName}
+                            </Typography>
+                        </a>
+                    </Link>
+                    <p className={classes.heroAuthor}>- {author.fullName}</p>
+                </div>
+                <div className={classes.heroImg}>
+                    <CustomImage
+                        src={image.url}
+                        alt={plantName}
+                        width={400}
+                        layout='responsive'
+                        aspectRatio='1:1'
+                    />
+                    <div className={classes.backdrop}>
                         <CustomImage
-                            src={plant.image.url}
-                            alt={plant.plantName}
+                            src={image.url}
+                            alt={plantName}
                             width={400}
                             layout='responsive'
-                            aspectRatio='3:2'
+                            aspectRatio='1:1'
                         />
-                    </div>
-                    <div className="hero-wrap-text">
-                        <p className="category">{plant.category.title}</p>
-                        <Link href={`/entry/${plant.slug}`}>
-                            <a title={`Go to ${plant.plantName}`}>
-                                <Typography
-                                    variant="h1"
-                                    component="h2"
-                                    className='hero-text'>
-                                    {plant.plantName}
-                                </Typography>
-                            </a>
-                        </Link>
-                        <p className="hero-author">- {plant.author.fullName}</p>
                     </div>
                 </div>
             </div>
-
-            <style jsx>{`
-                .hero-wrapper {
-                    position: relative;
-                    max-width: 600px;
-                    margin: auto;
-                }
-                .hero-wrap-text {
-                    background: rgba(255, 255, 255, .75);
-                    position: absolute;
-                    bottom: 1rem;
-                    left: 50%;
-                    width: 90%; 
-                    min-height: 50%;
-                    padding: 0 1rem;
-                    transform: translateX(-50%);
-                }
-                .hero-author {
-                    font-size: 1rem;
-                    margin: 0.5rem 0;
-                }
-                .hero-img {
-                    margin-left: auto;
-                }
-                
-                @media screen and (min-width: 480px) {
-                    .hero-img {
-                        max-width: 400px;
-                    }
-                    .hero-wrap-text {
-                        background: transparent;
-                        bottom: 50%;
-                        left: 0;
-                        max-width: 300px;
-                        transform: translateX(0) translateY(50%);
-                    }
-                }
-
-                @media screen and (min-width: 960px) {
-                    .hero-img {
-                        max-width: 600px;
-                    }
-                    .hero-wrapper {
-                        max-width: 800px;
-                    }
-                }
-                
-                @media screen and (min-width: 1200px) {
-                    .hero-img {
-                        max-width: 800px;
-                    }
-                    .hero-wrapper {
-                        max-width: 1000px;
-                    }
-                    .hero-wrap-text {
-                        max-width: 400px;
-                    }
-                    .hero-author {
-                        font-size: 1.2rem;
-                    }
-                }
-            `}</style>
-        </>
+        </div>
     )
 }
+
+const useStyles = makeStyles(theme => ({
+    hero: {
+        display: 'flex',
+        alignItems: 'center'
+    },
+    heroImg: {
+        position: 'relative',
+        width: '50%',
+        marginRight: '1rem',
+    },
+    backdrop: {
+        position: 'absolute',
+        top: '5%',
+        left: '5%',
+        width: '100%',
+        height: '100%',
+        opacity: '0.3',
+        filter: 'blur(5px)',
+        zIndex: -1
+    },
+    heroWrapText: {
+        width: '50%',
+        padding: '0 1rem',
+    },
+    heroText: {
+        wordBreak: 'break-word',
+        fontSize: '2rem',
+        fontWeight: 'bold',
+        textAlign: 'left',
+        [theme.breakpoints.up('sm')]: {
+            fontSize: '3rem'
+        },
+        [theme.breakpoints.up('md')]: {
+            fontSize: '5rem',
+        },
+    },
+    heroAuthor: {
+        margin: '0.5rem 0'
+    },
+}))

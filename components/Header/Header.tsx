@@ -1,7 +1,7 @@
 import { PropsWithChildren } from 'react'
 import Link, { LinkProps } from 'next/link'
-import { Navbar } from "@ui/Navbar"
 import Button from '@material-ui/core/Button'
+import { Navbar } from "@ui/Navbar"
 import { PreviewModeBanner } from './PreviewModeBanner'
 
 export const Header = () => {

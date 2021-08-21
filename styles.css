@@ -31,12 +31,12 @@ ul, ol {
     max-width: 1360px;
 }
 
-.hero-text {
+/* .hero-text {
     word-break: break-word;
     font-size: 2rem;
     font-weight: bold;
     text-align: left;
-}
+} */
 
 .hero-text:hover {
     text-decoration: underline;
@@ -92,9 +92,9 @@ ul, ol {
         padding: 3rem 1rem;
     }
     
-    .hero-text {
+    /* .hero-text {
         font-size: 3rem;
-    }
+    } */
     .wrap-plants .plant-collection {
         padding-top: 1rem;
         padding-bottom: 0;
@@ -122,10 +122,10 @@ ul, ol {
         padding: 1rem 2rem;
     }
 
-    .hero-text {
+    /* .hero-text {
         font-size: 6rem;
         line-height: 6.5rem;
-    }
+    } */
 
     .excerpt {
         font-size: 1.5rem;
