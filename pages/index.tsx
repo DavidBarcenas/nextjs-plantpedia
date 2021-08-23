@@ -2,7 +2,7 @@ import { GetStaticProps, InferGetStaticPropsType } from 'next'
 import { getAuthorList, getPlantList } from '@api'
 import { Layout } from '@components/Layout'
 import { AuthorCollection } from '@components/AuthorCollection'
-import { PlantCollection } from '@components/PlantCollection'
+import { PlantCollection } from '@components/Plant/PlantCollection'
 import { Hero } from '@components/Hero'
 
 interface HomeProps {
