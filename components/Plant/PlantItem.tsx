@@ -9,7 +9,7 @@ import { CustomImage } from '@components/CustomImage';
 import { CustomImageProps } from 'types/imageTypes';
 import { DistributivePick } from 'types/distributive';
 
-type PlantItemProps = {
+type Props = {
     plant: Plant;
     showDesc: Boolean;
     width?: number;
@@ -24,7 +24,7 @@ export const PlantItem = ({
     fit = 'scale',
     layout = 'intrinsic',
     titleVariant = 'h2'
-}: PlantItemProps) => {
+}: Props) => {
     const { slug, plantName, image, category, description } = plant
     const classes = useStyles()
 

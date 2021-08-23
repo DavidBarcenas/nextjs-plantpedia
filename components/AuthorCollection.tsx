@@ -56,7 +56,7 @@ const useStyles = makeStyles(theme => ({
     authorImg: {
         width: '120px',
         height: '120px',
-        marginBottom: '.5rem',
+        marginBottom: '1rem',
         [theme.breakpoints.up('md')]: {
             width: '160px',
             height: '160px'

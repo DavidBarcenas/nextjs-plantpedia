@@ -8,7 +8,7 @@ export type FitValues   = 'pad' | 'fill' | 'crop' | 'scale';
 export type CustomImageProps = {
     width: number;
     height?: never;
-    layout: LayoutTypes,
+    layout?: LayoutTypes,
     aspectRatio: AspectRatio,
     fit?: FitValues,
 } & DistributiveOmit<ImageProps, 'height'>
