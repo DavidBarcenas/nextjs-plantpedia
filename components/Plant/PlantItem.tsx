@@ -8,6 +8,7 @@ import { CustomImage } from '@components/CustomImage';
 
 import { CustomImageProps } from 'types/imageTypes';
 import { DistributivePick } from 'types/distributive';
+import { Category } from '@components/Category';
 
 type Props = {
     plant: Plant;
@@ -39,7 +40,10 @@ export const PlantItem = ({
                         aspectRatio={aspectRatio}
                         fit={fit}
                     />
-                    <p className={classes.category}>{category.title}</p>
+                    <Category
+                        category={category.title}
+                        className={classes.category}
+                    />
                     <Typography
                         variant={titleVariant}
                         component="h2"
@@ -73,7 +77,7 @@ const useStyles = makeStyles(theme => ({
     },
     category: {
         position: 'absolute',
-        top: '.5rem',
+        top: '1rem',
         right: '1rem'
     }
 }))

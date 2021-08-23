@@ -2,6 +2,7 @@ import Link from 'next/link'
 import { Typography } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core';
 import { CustomImage } from '@components/CustomImage'
+import { Category } from './Category';
 
 export const Hero = ({ image, plantName, category, slug, author }: Plant) => {
     const classes = useStyles();
@@ -10,7 +11,7 @@ export const Hero = ({ image, plantName, category, slug, author }: Plant) => {
         <section className='wrapper'>
             <article className={classes.hero}>
                 <div className={classes.heroWrapText}>
-                    <p className="category">{category.title}</p>
+                    <Category category={category.title} />
                     <Link href={`/entry/${slug}`}>
                         <a title={`Go to ${plantName}`}>
                             <Typography
@@ -29,7 +30,7 @@ export const Hero = ({ image, plantName, category, slug, author }: Plant) => {
                         alt={plantName}
                         width={400}
                         layout='responsive'
-                        aspectRatio='1:1'
+                        aspectRatio='4:3'
                     />
                     <div className={classes.backdrop}>
                         <CustomImage
@@ -37,7 +38,7 @@ export const Hero = ({ image, plantName, category, slug, author }: Plant) => {
                             alt={plantName}
                             width={400}
                             layout='responsive'
-                            aspectRatio='1:1'
+                            aspectRatio='4:3'
                         />
                     </div>
                 </div>

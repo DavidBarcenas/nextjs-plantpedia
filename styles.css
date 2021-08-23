@@ -32,13 +32,6 @@ ul, ol {
     max-width: 1360px;
 }
 
-/* .hero-text {
-    word-break: break-word;
-    font-size: 2rem;
-    font-weight: bold;
-    text-align: left;
-} */
-
 .hero-text:hover {
     text-decoration: underline;
     text-decoration-thickness: 3px;
@@ -49,20 +42,6 @@ ul, ol {
     font-family: Arial, Helvetica, sans-serif;
     color: #555;
 }
-
-.category {
-    display: inline-block;
-    background: #fee86d;
-    border-radius: 1rem;
-    padding: .3rem 1rem;
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: .75rem;
-}
-
-/* .excerpt {
-    color: #555;
-    font-size: 1.2rem;
-} */
 
 .bg-gray {
     background: #f7f7f7;
