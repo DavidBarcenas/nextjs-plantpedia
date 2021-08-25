@@ -1,15 +1,19 @@
+import { Typography } from "@material-ui/core"
+
 export const Footer = () => {
     return (
         <>
             <footer className="footer">
                 <div className="logo"></div>
                 <div className="wrapper">
-                    <h3>Plantpedia</h3>
-
+                    <Typography
+                        variant='h2'
+                        style={{ marginBottom: '1rem' }}
+                    >Plantpedia</Typography>
                     <div className="credits">
                         <p>
                             Images from
-                            <a target="_blank" href="https://www.pexels.com" title="Pexels">Pexels</a>
+                            <a target="_blank" href="https://www.pexels.com" title="Pexels"> Pexels</a>
                         </p>
                     </div>
                 </div>
@@ -22,6 +26,7 @@ export const Footer = () => {
                     position: relative;
                     overflow: hidden;
                     text-align: center;
+                    padding: 1rem 0;
                 }
                 .logo {
                     position: absolute;
@@ -43,9 +48,13 @@ export const Footer = () => {
                     padding-top: 1rem;
                     font-family: arial;
                 }
+                
+                .credits p {
+                    color: #777;
+                }
 
                 .footer a {
-                    color: #fff;
+                    color: #777;
                 }
 
                 @media screen and (min-width: 600px) {
