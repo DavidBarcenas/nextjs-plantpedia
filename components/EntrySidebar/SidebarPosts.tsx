@@ -40,8 +40,6 @@ export const SidebarPosts = ({ posts }: Props) => {
           ))
         }
       </ul>
-
-
     </div>
   )
 }

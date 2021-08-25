@@ -1,7 +1,7 @@
-import { SidebarCategories } from '@components/EntrySidebar/SidebarCategories'
-import { SidebarPosts } from '@components/EntrySidebar/SidebarPosts'
 import React from 'react'
 import { makeStyles } from '@material-ui/core';
+import { SidebarCategories } from '@components/EntrySidebar/SidebarCategories'
+import { SidebarPosts } from '@components/EntrySidebar/SidebarPosts'
 
 type Props = {
   posts: Plant[];

@@ -6,9 +6,9 @@ import { getPlant, getPlantList, getCategoryList } from '../../api/index';
 
 import { RichText } from '@components/RichText';
 import { Layout } from '@components/Layout';
-import { SidebarAuthor } from '@components/SidebarAuthor';
 import { CustomImage } from '@components/CustomImage'
 import { EntrySidebar } from '@components/EntrySidebar/EntrySidebar';
+import { Author } from '@components/Author/SidebarAuthor';
 
 type PlantEntryProps = {
   plant: Plant;
@@ -89,7 +89,7 @@ const PlantEntryPage = ({ plant, posts, categories }: InferGetStaticPropsType<ty
             </Typography>
             <RichText description={plant.description} />
           </div>
-          <SidebarAuthor author={plant.author} />
+          <Author author={plant.author} />
         </article>
         <EntrySidebar posts={posts} categories={categories} />
       </section>

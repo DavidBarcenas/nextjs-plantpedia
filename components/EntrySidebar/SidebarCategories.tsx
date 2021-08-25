@@ -29,13 +29,13 @@ export const SidebarCategories = ({ categories }: SidebarCategoriesProps) => {
 
             <style jsx>{`
                 .sidebar-categories {
-                    grid-gap: .75rem;
-                    margin-bottom: 2rem;
+                    display: grid;
+                    grid-template-columns: repeat(2, 1fr);
+                    grid-gap: .1rem;
                 }
                 .sidebar-categories-item {
                     display: flex;
                     align-items: center;
-                    border-bottom: 1px solid #ccc;
                     padding: .5em 0;
                 }
                 .sidebar-categories-img {
