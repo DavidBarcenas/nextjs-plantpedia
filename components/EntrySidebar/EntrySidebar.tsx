@@ -1,6 +1,7 @@
-import { SidebarCategories } from '@components/SidebarCategories'
-import { SidebarPosts } from '@components/SidebarPosts'
+import { SidebarCategories } from '@components/EntrySidebar/SidebarCategories'
+import { SidebarPosts } from '@components/EntrySidebar/SidebarPosts'
 import React from 'react'
+import { makeStyles } from '@material-ui/core';
 
 type Props = {
   posts: Plant[];
@@ -8,10 +9,21 @@ type Props = {
 }
 
 export const EntrySidebar = ({ posts, categories }: Props) => {
+  const classes = useStyles()
+
   return (
-    <aside className="post-aside">
+    <aside className={classes.aside}>
       <SidebarPosts posts={posts} />
       <SidebarCategories categories={categories} />
     </aside>
   )
 }
+
+const useStyles = makeStyles(theme => ({
+  aside: {
+    width: '100%',
+    [theme.breakpoints.up('md')]: {
+      width: '30%'
+    }
+  }
+}))

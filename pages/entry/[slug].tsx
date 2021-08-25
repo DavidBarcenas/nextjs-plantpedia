@@ -89,9 +89,9 @@ const PlantEntryPage = ({ plant, posts, categories }: InferGetStaticPropsType<ty
             </Typography>
             <RichText description={plant.description} />
           </div>
-          <EntrySidebar posts={posts} categories={categories} />
           <SidebarAuthor author={plant.author} />
         </article>
+        <EntrySidebar posts={posts} categories={categories} />
       </section>
     </Layout>
   )
