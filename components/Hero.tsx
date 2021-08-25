@@ -72,9 +72,10 @@ const useStyles = makeStyles(theme => ({
         padding: '0 1rem',
     },
     heroText: {
-        wordBreak: 'break-word',
+        marginTop: '1rem',
         fontSize: '2rem',
         fontWeight: 'bold',
+        wordBreak: 'break-word',
         textAlign: 'left',
         [theme.breakpoints.up('sm')]: {
             fontSize: '3rem'
