@@ -66,26 +66,18 @@ ul, ol {
     overflow-x: scroll !important;
 }
 
+.top-stories-posts .wrapper {
+    padding: 2rem 0 0;
+}
+
 
 @media screen and (min-width: 600px) {
     .wrapper {
-        padding: 3rem 1rem;
+        padding: 4rem 1rem;
     }
-    
-    /* .hero-text {
-        font-size: 3rem;
-    } */
-    .wrap-plants .plant-collection {
-        padding-top: 1rem;
-        padding-bottom: 0;
-    } 
 }
 
 @media screen and (min-width: 960px) {
-    .wrapper {
-        padding: 5rem 1rem;
-    }
-
     .MuiTabs-fixed {
         overflow: hidden !important;
     }
@@ -101,11 +93,6 @@ ul, ol {
     .navbar {
         padding: 1rem 2rem;
     }
-
-    /* .hero-text {
-        font-size: 6rem;
-        line-height: 6.5rem;
-    } */
 
     .excerpt {
         font-size: 1.5rem;

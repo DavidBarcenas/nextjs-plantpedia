@@ -1,28 +1,10 @@
 import Tabs from '@material-ui/core/Tabs'
 import { useMediaQuery } from '@material-ui/core'
 import { Tab } from '@material-ui/core'
-
-export interface TabItem {
-    label: string;
-    value: string;
-    content: React.ReactNode;
-}
-
-interface TabPanelProps {
-    index: string | number;
-    value: string | number;
-    isHidden: boolean;
-    children: React.ReactNode;
-}
-
-interface TabsProps {
-    tabs: TabItem[];
-    currentTab: string;
-    onTabChange: (_: React.ChangeEvent<{}>, newValue: string) => void;
-}
+import { TabPanelProps, TabsProps } from 'types/tabsTypes';
 
 export const VerticalTabs = ({ tabs, currentTab, onTabChange }: TabsProps) => {
-    const matches = useMediaQuery('(min-width:960px)');
+    const matches = useMediaQuery('(min-width:960px)', { defaultMatches: true });
 
     const { tabItems, tabPanels } = tabs.reduce<{
         tabItems: React.ReactNodeArray
