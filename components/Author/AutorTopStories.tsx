@@ -1,7 +1,7 @@
 import Alert from '@material-ui/lab/Alert'
 import { usePlantListByAuthor } from 'hooks/usePlantListByAuthor';
-import { CustomImage } from './CustomImage';
-import { PlantCollection } from './Plant/PlantCollection';
+import { CustomImage } from '../CustomImage';
+import { PlantCollection } from '../Plant/PlantCollection';
 
 export const AutorTopStories = ({ author }: { author: Author }) => {
     const { plantList, status } = usePlantListByAuthor({

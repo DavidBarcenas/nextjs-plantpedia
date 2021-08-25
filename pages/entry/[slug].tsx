@@ -8,7 +8,7 @@ import { RichText } from '@components/RichText';
 import { Layout } from '@components/Layout';
 import { CustomImage } from '@components/CustomImage'
 import { EntrySidebar } from '@components/EntrySidebar/EntrySidebar';
-import { Author } from '@components/Author/SidebarAuthor';
+import { Author } from '@components/Author/Author';
 
 type PlantEntryProps = {
   plant: Plant;

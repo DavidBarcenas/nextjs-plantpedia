@@ -1,12 +1,12 @@
 import { GetServerSideProps, InferGetServerSidePropsType } from 'next';
 import { Layout } from '@components/Layout';
-import { AutorTopStories } from '@components/AutorTopStories';
+import { AutorTopStories } from '@components/Author/AutorTopStories';
 import { TabItem, VerticalTabs } from '@components/Tabs';
 import { getAuthorList } from '@api/index';
 import { useRouter } from 'next/router';
 import ErrorPage from '../_error'
 
-interface TopStoriesProps {
+type TopStoriesProps = {
     authors: Author[];
     currentAuthor: Author['handle'];
     status: 'error' | 'success';
