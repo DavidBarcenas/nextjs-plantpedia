@@ -1,5 +1,5 @@
 import { ImageProps } from 'next/image'
-import { DistributiveOmit } from './distributive';
+import { DistributiveOmit } from './distributiveType';
 
 export type AspectRatio = '1:1' | '4:3' | '16:9' | '3:2' | '9:12'
 export type LayoutTypes = 'fixed' | 'intrinsic' | 'responsive'
