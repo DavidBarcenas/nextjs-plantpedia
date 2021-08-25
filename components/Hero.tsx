@@ -11,7 +11,7 @@ export const Hero = ({ image, plantName, category, slug, author }: Plant) => {
         <section className='wrapper'>
             <article className={classes.hero}>
                 <div className={classes.heroWrapText}>
-                    <Category category={category.title} />
+                    <Category category={category} />
                     <Link href={`/entry/${slug}`}>
                         <a title={`Go to ${plantName}`}>
                             <Typography

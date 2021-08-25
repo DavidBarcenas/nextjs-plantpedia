@@ -19,7 +19,7 @@ export const PlantCollection = ({ plants, variant = 'horizontal' }: Props) => {
                         showDesc={false}
                         aspectRatio='4:3'
                         fit='fill'
-                        titleVariant='h3'
+                        titleVariant='h4'
                     />
                 ))}
             </section>

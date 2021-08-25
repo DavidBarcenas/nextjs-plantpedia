@@ -2,7 +2,7 @@ import React from 'react'
 import { makeStyles, Paper } from '@material-ui/core';
 
 type Props = {
-    category: string;
+    category: Category;
     className?: string
 }
 
@@ -12,7 +12,7 @@ export const Category = ({ category, className }: Props) => {
     return (
         <Paper className={`${classes.categoryContainer} ${className}`}>
             <p className={classes.category}>
-                {category}
+                {category.slug}
             </p>
         </Paper>
     )

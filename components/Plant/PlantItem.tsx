@@ -41,7 +41,7 @@ export const PlantItem = ({
                         fit={fit}
                     />
                     <Category
-                        category={category.title}
+                        category={category}
                         className={classes.category}
                     />
                     <Typography

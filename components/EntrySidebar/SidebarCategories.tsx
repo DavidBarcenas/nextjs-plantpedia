@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import { CustomImage } from '@components/CustomImage'
 
 interface SidebarCategoriesProps {
@@ -13,15 +14,23 @@ export const SidebarCategories = ({ categories }: SidebarCategoriesProps) => {
                     categories.map(category => (
                         <li className="sidebar-categories-item" key={category.id}>
                             <div className="sidebar-categories-img">
-                                <CustomImage
-                                    src={category.icon.url}
-                                    alt={category.icon.title}
-                                    width={80}
-                                    aspectRatio='4:3'
-                                    layout='responsive'
-                                />
+                                <Link href={`/category/${category.slug}`}>
+                                    <a title={category.title}>
+                                        <CustomImage
+                                            src={category.icon.url}
+                                            alt={category.icon.title}
+                                            width={80}
+                                            aspectRatio='4:3'
+                                            layout='responsive'
+                                        />
+                                    </a>
+                                </Link>
                             </div>
-                            <p>{category.title}</p>
+                            <Link href={`/category/${category.slug}`}>
+                                <a title={category.title}>
+                                    <p>{category.title}</p>
+                                </a>
+                            </Link>
                         </li>
                     ))
                 }
