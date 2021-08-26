@@ -1,5 +1,6 @@
 import { PropsWithChildren } from 'react'
 import Link, { LinkProps } from 'next/link'
+import { useTranslation } from 'next-i18next'
 import Button from '@material-ui/core/Button'
 
 import { Navbar } from "@ui/Navbar"
@@ -7,14 +8,14 @@ import { PreviewModeBanner } from './PreviewModeBanner'
 import { SelectLang } from './SelectLang'
 
 export const Header = () => {
-
+    const { t } = useTranslation(['common'])
 
     return (
         <header>
             <PreviewModeBanner />
             <SelectLang />
             <Navbar title="🌿 Plantpedia">
-                <NavLink href="/top-stories">Top Stories</NavLink>
+                <NavLink href="/top-stories">{t('topStories')}</NavLink>
             </Navbar>
         </header>
     )

@@ -7,7 +7,7 @@ import { Excerpt } from '@components/Excerpt';
 import { CustomImage } from '@components/CustomImage';
 
 import { CustomImageProps } from 'types/imageTypes';
-import { DistributivePick } from 'types/distributive';
+import { DistributivePick } from 'types/distributiveType';
 import { Category } from '@components/Category';
 
 type Props = {

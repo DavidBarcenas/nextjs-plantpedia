@@ -1,14 +1,16 @@
 import { useRouter } from 'next/router';
+import { useTranslation } from 'next-i18next'
 import { Typography, Grid, Button } from '@material-ui/core';
 
 export const SelectLang = () => {
   const { locales, locale } = useRouter()
+  const { t } = useTranslation(['common'])
 
   return (
-    <Grid container justify="space-between">
+    <Grid container justifyContent="space-between">
       <Grid item></Grid>
       <Grid item>
-        <Typography variant='body2' component='span'>Language:</Typography>
+        <Typography variant='body2' component='span'>{t('language')}:</Typography>
         {
           locales.map(lang => (
             <form
