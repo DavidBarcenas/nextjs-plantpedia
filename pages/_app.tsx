@@ -1,3 +1,4 @@
+import { appWithTranslation } from 'next-i18next';
 import { AppProps } from 'next/app'
 import { UIProvider } from '@ui/Provider'
 import { useServerStyles } from '@ui/ssr'
@@ -13,4 +14,4 @@ const NextApp = ({ Component, pageProps }: AppProps) => {
   )
 }
 
-export default NextApp
+export default appWithTranslation(NextApp)
