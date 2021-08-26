@@ -10,8 +10,8 @@ interface HomeProps {
   authors: Author[];
 }
 
-export const getStaticProps: GetStaticProps<HomeProps> = async () => {
-  const plants = await getPlantList({ limit: 10 })
+export const getStaticProps: GetStaticProps<HomeProps> = async ({ locale }) => {
+  const plants = await getPlantList({ limit: 10, locale })
   const authors = await getAuthorList({ limit: 6 })
 
   return {

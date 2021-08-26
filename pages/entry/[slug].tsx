@@ -1,6 +1,7 @@
 import React from 'react'
-import { GetStaticProps, InferGetStaticPropsType } from 'next';
+import { GetStaticProps, InferGetStaticPropsType, GetStaticPaths } from 'next';
 import { makeStyles, Typography } from '@material-ui/core';
+import { flatMap } from 'lodash'
 
 import { getPlant, getPlantList, getCategoryList } from '../../api/index';
 
@@ -20,15 +21,21 @@ type PathType = {
   params: {
     slug: string;
   }
+  local: string
 }
 
-export const getStaticPaths = async () => {
+export const getStaticPaths: GetStaticPaths = async ({ locales }) => {
+  if (!locales) {
+    throw new Error('An error occurred in the translation.')
+  }
+
   const entries = await getPlantList({ limit: 10 })
-  const paths: PathType[] = entries.map(plant => ({
+  const paths: PathType[] = flatMap(entries.map(plant => ({
     params: {
       slug: plant.slug
     }
-  }))
+  })),
+    (path: PathType) => locales.map(locale => ({ locale, ...path })))
 
   return {
     paths,
@@ -36,7 +43,7 @@ export const getStaticPaths = async () => {
   }
 }
 
-export const getStaticProps: GetStaticProps<PlantEntryProps> = async ({ params, preview }) => {
+export const getStaticProps: GetStaticProps<PlantEntryProps> = async ({ params, preview, locale }) => {
   const slug = params.slug
 
   if (typeof slug !== 'string') {
@@ -46,7 +53,7 @@ export const getStaticProps: GetStaticProps<PlantEntryProps> = async ({ params, 
   }
 
   try {
-    const plant = await getPlant(slug, preview)
+    const plant = await getPlant(slug, preview, locale)
     const posts = await getPlantList({ limit: 6, skip: 10 })
     const categories = await getCategoryList()
 
