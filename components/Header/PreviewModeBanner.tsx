@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react"
+import { useTranslation } from 'next-i18next'
 import Alert from '@material-ui/lab/Alert'
 import Button from '@material-ui/core/Button'
 
@@ -9,6 +10,7 @@ type PreviewStatusResponse = {
 
 export const PreviewModeBanner = () => {
     const [isEnabled, setIsEnabled] = useState(false)
+    const { t } = useTranslation(['common'])
 
     useEffect(() => {
         try {
@@ -34,11 +36,11 @@ export const PreviewModeBanner = () => {
                 severity="warning"
                 action={
                     <Button variant="text" color="inherit" href="/api/preview/exit">
-                        Disable preview mode
+                        {t('disabledPreviewMode')}
                     </Button>
                 }
             >
-                <div className="max-w-md">Preview mode is enabled</div>
+                <div className="max-w-md">{t('previewMode')}</div>
             </Alert>
         </div>
     )

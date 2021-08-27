@@ -1,13 +1,14 @@
 import Link from 'next/link'
-import Button from '@material-ui/core/Button'
+import { useTranslation } from 'next-i18next'
 import { Typography } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core';
+import Button from '@material-ui/core/Button'
 
 import { Excerpt } from '@components/Excerpt';
 import { CustomImage } from '@components/CustomImage';
 
 import { CustomImageProps } from 'types/imageTypes';
-import { DistributivePick } from 'types/distributive';
+import { DistributivePick } from 'types/distributiveType';
 import { Category } from '@components/Category';
 
 type Props = {
@@ -28,6 +29,7 @@ export const PlantItem = ({
 }: Props) => {
     const { slug, plantName, image, category, description } = plant
     const classes = useStyles()
+    const { t } = useTranslation(['entries'])
 
     return (
         <article className={classes.plant}>
@@ -57,7 +59,7 @@ export const PlantItem = ({
                     <>
                         <Excerpt richText={description} className={classes.excerpt} />
                         <Link href={`/entry/${slug}`} passHref>
-                            <Button variant="outlined">Read more</Button>
+                            <Button variant="outlined">{t('readMore')}</Button>
                         </Link>
                     </>
                 )

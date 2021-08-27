@@ -1,6 +1,9 @@
 import { Typography } from "@material-ui/core"
+import { useTranslation } from 'next-i18next'
 
 export const Footer = () => {
+    const { t } = useTranslation(['common'])
+
     return (
         <>
             <footer className="footer">
@@ -12,7 +15,7 @@ export const Footer = () => {
                     >Plantpedia</Typography>
                     <div className="credits">
                         <p>
-                            Images from
+                            {t('imagesFrom')}
                             <a target="_blank" href="https://www.pexels.com" title="Pexels"> Pexels</a>
                         </p>
                     </div>
