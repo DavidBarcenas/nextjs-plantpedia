@@ -16,6 +16,7 @@ export const Header = () => {
             <SelectLang />
             <Navbar title="🌿 Plantpedia">
                 <NavLink href="/top-stories">{t('topStories')}</NavLink>
+                <NavLink href="/search">{t('search')}</NavLink>
             </Navbar>
         </header>
     )
