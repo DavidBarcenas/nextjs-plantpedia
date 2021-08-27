@@ -1,16 +1,19 @@
-import { Layout } from '@components/Layout'
+import { useTranslation } from 'next-i18next'
 import Button from '@material-ui/core/Button'
 import { Typography } from '@material-ui/core';
+import { Layout } from '@components/Layout'
 
 const ServerErrorPage = ({ statusCode = 500 }: { statusCode?: number }) => {
+    const { t } = useTranslation(['errors'])
+
     return (
         <Layout>
             <div className="wrapper">
-                <Typography variant='h2'>🍄 Something went wrong</Typography>
-                <p>It's not you, it's us. Please try it again in a few minutes.</p>
+                <Typography variant='h2'>🍄 {t('somethingWentWrong')}</Typography>
+                <p>{t('errorMessage')}</p>
                 <span>ERRORCODE: {statusCode}</span>
-                <Button color="primary" variant="contained" href="/" title="Go back home" >
-                    Go back home
+                <Button color="primary" variant="contained" href="/" title={t('goHome')} >
+                    {t('goHome')}
                 </Button>
             </div>
         </Layout>

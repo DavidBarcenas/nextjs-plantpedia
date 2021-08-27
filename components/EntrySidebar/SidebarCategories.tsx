@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import { useTranslation } from 'next-i18next'
 import { CustomImage } from '@components/CustomImage'
 
 interface SidebarCategoriesProps {
@@ -6,9 +7,11 @@ interface SidebarCategoriesProps {
 }
 
 export const SidebarCategories = ({ categories }: SidebarCategoriesProps) => {
+    const { t } = useTranslation(['entries'])
+
     return (
         <>
-            <h3 className="title-sidebar">Categories</h3>
+            <h3 className="title-sidebar">{t('categories')}</h3>
             <ul className="sidebar-categories">
                 {
                     categories.map(category => (

@@ -1,5 +1,5 @@
-import React from 'react'
 import { GetStaticProps, InferGetStaticPropsType, GetStaticPaths } from 'next';
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import { makeStyles, Typography } from '@material-ui/core';
 import { flatMap } from 'lodash'
 
@@ -53,6 +53,7 @@ export const getStaticProps: GetStaticProps<PlantEntryProps> = async ({ params, 
   }
 
   try {
+    const i18nConf = await serverSideTranslations(locale)
     const plant = await getPlant(slug, preview, locale)
     const posts = await getPlantList({ limit: 6, skip: 10 })
     const categories = await getCategoryList()
@@ -61,7 +62,8 @@ export const getStaticProps: GetStaticProps<PlantEntryProps> = async ({ params, 
       props: {
         plant,
         posts,
-        categories
+        categories,
+        ...i18nConf,
       },
       revalidate: 5 * 60 // refresh 5 min
     }

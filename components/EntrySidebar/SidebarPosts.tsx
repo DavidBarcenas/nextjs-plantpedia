@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import { useTranslation } from 'next-i18next'
 import { CustomImage } from '@components/CustomImage'
 import { makeStyles, Typography } from '@material-ui/core';
 
@@ -8,10 +9,11 @@ type Props = {
 
 export const SidebarPosts = ({ posts }: Props) => {
   const classes = useStyles()
+  const { t } = useTranslation(['entries'])
 
   return (
     <div>
-      <h3 className="title-sidebar">Recent Posts</h3>
+      <h3 className="title-sidebar">{t('recentPosts')}</h3>
       <ul className={classes.list}>
         {
           posts.map(post => (

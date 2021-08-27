@@ -1,4 +1,6 @@
 import { GetServerSideProps, InferGetServerSidePropsType } from 'next';
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
+import { useTranslation } from 'next-i18next'
 import { useRouter } from 'next/router';
 import { Typography } from '@material-ui/core';
 
@@ -12,11 +14,9 @@ import { TabItem } from 'types/tabsTypes';
 
 type TopStoriesProps = {
   authors: Author[];
-  currentAuthor: Author['handle'];
-  status: 'error' | 'success';
 }
 
-export const getServerSideProps: GetServerSideProps<TopStoriesProps> = async ({ params }) => {
+export const getServerSideProps: GetServerSideProps<TopStoriesProps> = async ({ params, locale }) => {
   const authorHandle = String(params?.author)
 
   try {
@@ -40,36 +40,24 @@ export const getServerSideProps: GetServerSideProps<TopStoriesProps> = async ({ 
     return {
       props: {
         authors,
-        currentAuthor: authorHandle,
-        status: 'success',
+        ...(await serverSideTranslations(locale!)),
       },
     }
   } catch (error) {
     return {
-      props: {
-        authors: [],
-        currentAuthor: authorHandle,
-        status: 'error',
-      },
+      notFound: true
     }
   }
 }
 
-const TopStories = ({
-  authors,
-  status
-}: InferGetServerSidePropsType<typeof getServerSideProps>) => {
+const TopStories = ({ authors }: InferGetServerSidePropsType<typeof getServerSideProps>) => {
   const router = useRouter()
   const currentAuthor = router.query.author
+  const { t } = useTranslation(['top-stories'])
 
-  if (typeof currentAuthor !== 'string' ||
-    authors.length === 0 ||
-    status === 'error') {
+  if (typeof currentAuthor !== 'string' || authors.length === 0) {
     return (
-      <ErrorPage
-        message="There is no information available. 
-        Did you forget to set up your Contenful space's content?"
-      />
+      <ErrorPage message={t('noInfoAvailable')} />
     )
   }
 
@@ -88,7 +76,10 @@ const TopStories = ({
           style={{
             textAlign: 'center',
             marginBottom: '2rem'
-          }}>Top 10 Stories</Typography>
+          }}
+        >
+          {t('top10Stories')}
+        </Typography>
         <VerticalTabs
           tabs={tabs}
           currentTab={currentAuthor}

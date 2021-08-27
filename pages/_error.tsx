@@ -1,3 +1,4 @@
+import { useTranslation } from 'next-i18next'
 import Button from '@material-ui/core/Button'
 import NotFoundPage from './404'
 import ServerErrorPage from './500'
@@ -14,6 +15,8 @@ export const getInitialProps = ({ res, err }) => {
 }
 
 const ErrorPage = ({ statusCode, message }: ErrorPageProps) => {
+    const { t } = useTranslation(['errors'])
+
     if (statusCode === 404) {
         return <NotFoundPage />
     }
@@ -24,9 +27,7 @@ const ErrorPage = ({ statusCode, message }: ErrorPageProps) => {
 
     let errorMessage = message
     if (!message) {
-        errorMessage = statusCode
-            ? 'An error occurred on the server'
-            : 'An error occurred on the client'
+        errorMessage = statusCode ? t('serverError') : t('clientError')
     }
 
     return (
@@ -37,8 +38,8 @@ const ErrorPage = ({ statusCode, message }: ErrorPageProps) => {
                 {!statusCode ? null : (
                     <span>ERRORCODE: {statusCode}</span>
                 )}
-                <Button color="primary" variant="contained" href="/" title="Go back home" >
-                    Go back home
+                <Button color="primary" variant="contained" href="/" title={t('goHome')}>
+                    {t('goHome')}
                 </Button>
             </div>
         </Layout>
