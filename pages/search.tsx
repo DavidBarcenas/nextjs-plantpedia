@@ -8,13 +8,15 @@ import {
   InputAdornment,
   Typography
 } from '@material-ui/core'
+import { makeStyles } from '@material-ui/core';
+import { GetStaticProps } from 'next'
 import SearchIcon from '@material-ui/icons/SearchOutlined'
 
 import { QueryStatus, searchPlants } from '@api'
 import { Layout } from '@components/Layout'
 import { PlantCollection } from '@components/Plant/PlantCollection'
-import { GetStaticProps } from 'next'
-import { makeStyles } from '@material-ui/core';
+
+import { useDebounce } from 'hooks/useDebounce'
 
 export const getStaticProps: GetStaticProps = async ({ locale }) => ({
   props: await serverSideTranslations(locale!),
@@ -27,6 +29,8 @@ const Search = () => {
   const [status, setStatus] = useState<QueryStatus>('idle')
   const [results, setResults] = useState<Plant[]>([])
 
+  const searchTerm = useDebounce(term, 500)
+
   const updateTerm: ChangeEventHandler<HTMLInputElement> = (event) => {
     setTerm(event.currentTarget.value)
   }
@@ -34,7 +38,7 @@ const Search = () => {
   const emptyResults = status === 'success' && results.length === 0
 
   useEffect(() => {
-    if (term.trim().length < 3) {
+    if (searchTerm.trim().length < 3) {
       setStatus('idle')
       setResults([])
       return
@@ -43,12 +47,12 @@ const Search = () => {
     setStatus('loading')
 
     // Pagination not supported... yet
-    searchPlants({ term, limit: 10, })
+    searchPlants({ term: searchTerm, limit: 10, })
       .then((data) => {
         setResults(data)
         setStatus('success')
       })
-  }, [term])
+  }, [searchTerm])
 
   return (
     <Layout>
