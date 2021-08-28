@@ -3,21 +3,25 @@ import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import { useTranslation } from 'next-i18next'
 import { GetStaticProps } from 'next'
 
-import debouce from "lodash/debounce";
+import get from 'lodash/get';
+import flatMap from 'lodash/flatMap';
+import clsx from 'clsx'
 
 import {
   FormControl,
   InputLabel,
   OutlinedInput,
   InputAdornment,
-  Typography
+  Typography,
+  Button
 } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core';
 import SearchIcon from '@material-ui/icons/SearchOutlined'
 
-import { QueryStatus, searchPlants } from '@api'
 import { Layout } from '@components/Layout'
 import { PlantCollection } from '@components/Plant/PlantCollection'
+import { useDebounce } from 'hooks/useDebounce';
+import { useInfinitePlantSearch } from '../api/query/useInfinityPlantSearch';
 
 
 export const getStaticProps: GetStaticProps = async ({ locale }) => ({
@@ -28,37 +32,31 @@ const Search = () => {
   const classes = useStyles()
   const { t } = useTranslation(['search'])
   const [term, setTerm] = useState('')
-  const [status, setStatus] = useState<QueryStatus>('idle')
-  const [results, setResults] = useState<Plant[]>([])
 
-  const debouncedSearchPlants = useCallback(
-    debouce((term: string) => {
-      searchPlants({ term, limit: 10, })
-        .then((data) => {
-          setResults(data)
-          setStatus('success')
-        })
-    }, 500),
-    []
-  )
+  const searchTerm = useDebounce(term, 500)
+
+  // Use react-query to improve our http cache strategy and to make pagination easier
+  const {
+    data,
+    status,
+    isFetchingNextPage,
+    fetchNextPage,
+    hasNextPage
+  } = useInfinitePlantSearch({ term: searchTerm }, {
+    enabled: searchTerm.trim().length > 1,
+    staleTime: Infinity
+  })
 
   const updateTerm: ChangeEventHandler<HTMLInputElement> = (event) => {
     setTerm(event.currentTarget.value)
   }
 
-  const emptyResults = status === 'success' && results.length === 0
+  const emptyResults = status === 'success' && get(data, 'pages[0].length', 0) === 0
+  let results: Plant[] = []
 
-  useEffect(() => {
-    if (term.trim().length < 3) {
-      setStatus('idle')
-      setResults([])
-      return
-    }
-
-    setStatus('loading')
-
-    debouncedSearchPlants(term)
-  }, [term])
+  if (data?.pages) {
+    results = flatMap(data.pages)
+  }
 
   return (
     <Layout>
@@ -81,6 +79,18 @@ const Search = () => {
         </div>
         {emptyResults ? (<Typography variant="body1">{t('notFound', { term })}</Typography>) : null}
         {!emptyResults ? (<PlantCollection plants={results} />) : null}
+        {!hasNextPage ? null : (
+          <div className="text-center p4">
+            <Button
+              variant="outlined"
+              disabled={isFetchingNextPage}
+              className={clsx({ 'animate-pulse': isFetchingNextPage })}
+              onClick={() => fetchNextPage()}
+            >
+              {isFetchingNextPage ? t('loading') : t('loadMore')}
+            </Button>
+          </div>
+        )}
       </div>
     </Layout>
   )
