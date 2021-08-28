@@ -1,6 +1,10 @@
-import { ChangeEventHandler, useEffect, useState } from 'react'
+import { ChangeEventHandler, useCallback, useEffect, useState } from 'react'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import { useTranslation } from 'next-i18next'
+import { GetStaticProps } from 'next'
+
+import debouce from "lodash/debounce";
+
 import {
   FormControl,
   InputLabel,
@@ -9,14 +13,12 @@ import {
   Typography
 } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core';
-import { GetStaticProps } from 'next'
 import SearchIcon from '@material-ui/icons/SearchOutlined'
 
 import { QueryStatus, searchPlants } from '@api'
 import { Layout } from '@components/Layout'
 import { PlantCollection } from '@components/Plant/PlantCollection'
 
-import { useDebounce } from 'hooks/useDebounce'
 
 export const getStaticProps: GetStaticProps = async ({ locale }) => ({
   props: await serverSideTranslations(locale!),
@@ -29,7 +31,16 @@ const Search = () => {
   const [status, setStatus] = useState<QueryStatus>('idle')
   const [results, setResults] = useState<Plant[]>([])
 
-  const searchTerm = useDebounce(term, 500)
+  const debouncedSearchPlants = useCallback(
+    debouce((term: string) => {
+      searchPlants({ term, limit: 10, })
+        .then((data) => {
+          setResults(data)
+          setStatus('success')
+        })
+    }, 500),
+    []
+  )
 
   const updateTerm: ChangeEventHandler<HTMLInputElement> = (event) => {
     setTerm(event.currentTarget.value)
@@ -38,7 +49,7 @@ const Search = () => {
   const emptyResults = status === 'success' && results.length === 0
 
   useEffect(() => {
-    if (searchTerm.trim().length < 3) {
+    if (term.trim().length < 3) {
       setStatus('idle')
       setResults([])
       return
@@ -46,13 +57,8 @@ const Search = () => {
 
     setStatus('loading')
 
-    // Pagination not supported... yet
-    searchPlants({ term: searchTerm, limit: 10, })
-      .then((data) => {
-        setResults(data)
-        setStatus('success')
-      })
-  }, [searchTerm])
+    debouncedSearchPlants(term)
+  }, [term])
 
   return (
     <Layout>
