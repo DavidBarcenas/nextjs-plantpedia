@@ -1,18 +1,32 @@
 import Link from 'next/link'
-import { makeStyles } from '@material-ui/core'
+import { Grid, makeStyles } from '@material-ui/core'
 import { CustomImage } from '@components/CustomImage'
+import { useAuthors } from '../../api/query/useAuthor';
 
-interface Props {
-    authors: Author[]
-}
-
-export const AuthorCollection = ({ authors }: Props) => {
+export const AuthorCollection = () => {
     const classes = useStyles()
+    const { data, status } = useAuthors({ limit: 10 })
+
+    if (data == null || status !== 'success') {
+        const dummyItems = Array.from({ length: 4 }, (_, i) => `item-${i}`)
+        return (
+            <Grid container spacing={4} justifyContent="center">
+                {dummyItems.map((item) => (
+                    <Grid
+                        xs={2}
+                        item
+                        key={item}
+                        className="bg-gray-200 animate pulse"
+                    ></Grid>
+                ))}
+            </Grid>
+        )
+    }
 
     return (
         <ul className={`wrapper ${classes.authors}`}>
             {
-                authors.map(author => (
+                data.map(author => (
                     <li key={author.id} className={classes.authorItem}>
                         <Link href={`/top-stories/${author.handle}`}>
                             <a title={`See latest stories from ${author.fullName}`}>
