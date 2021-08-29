@@ -2,30 +2,31 @@ import Alert from '@material-ui/lab/Alert'
 import { makeStyles } from '@material-ui/core';
 import { useTranslation } from 'next-i18next'
 
-import { usePlantListByAuthor } from 'hooks/usePlantListByAuthor';
+import { usePlantListByAuthor } from '@api/query/usePlantListByAuthor';
 import { PlantCollection } from '../Plant/PlantCollection';
 import { Author } from './Author';
 
 export const AutorTopStories = ({ author }: { author: Author }) => {
   const classes = useStyles()
   const { t } = useTranslation(['top-stories'])
-
-  const { plantList, status } = usePlantListByAuthor({
+  const { data, isError, isSuccess } = usePlantListByAuthor({
     authorId: author.id,
     limit: 12
+  }, {
+    staleTime: 1000 * 60 * 5 // 5min
   })
 
   return (
     <>
       <section className={classes.container}>
         <Author author={author} />
-        {status === 'error' && <Alert severity="error">{t('somethingWentWrong')}</Alert>}
-        {status === 'success' && plantList.length === 0 ? (
+        {isError && <Alert severity="error">{t('somethingWentWrong')}</Alert>}
+        {isSuccess && data.length === 0 ? (
           <Alert severity="info">
             {t('authorHasNoStories', { name: author.fullName })}
           </Alert>) : null}
         <div className="top-stories-posts">
-          <PlantCollection plants={plantList} />
+          {isSuccess && data ? <PlantCollection plants={data} /> : null}
         </div>
       </section>
     </>
