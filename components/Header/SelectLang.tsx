@@ -1,16 +1,17 @@
 import { useRouter } from 'next/router';
 import { useTranslation } from 'next-i18next'
-import { Typography, Grid, Button } from '@material-ui/core';
+import { Typography, Grid, Button, makeStyles } from '@material-ui/core';
 
 export const SelectLang = () => {
   const { locales, locale } = useRouter()
   const { t } = useTranslation(['common'])
+  const classes = useStyles()
 
   return (
-    <Grid container justifyContent="space-between">
+    <Grid container justifyContent="space-between" className={`bg-gray ${classes.conatiner}`}>
       <Grid item></Grid>
       <Grid item>
-        <Typography variant='body2' component='span'>{t('language')}:</Typography>
+        <Typography variant='body2' component='span' className={classes.text}>{t('language')}:</Typography>
         {
           locales.map(lang => (
             <form
@@ -23,6 +24,7 @@ export const SelectLang = () => {
               <Button
                 type="submit"
                 variant={lang === locale ? 'outlined' : 'text'}
+                className={classes.text}
                 style={{ marginLeft: '.5rem' }}
               >
                 {lang.split('-')[0]}
@@ -34,3 +36,13 @@ export const SelectLang = () => {
     </Grid>
   )
 }
+
+const useStyles = makeStyles({
+  conatiner: {
+    padding: '0 1rem'
+  },
+  text: {
+    fontSize: '.75rem',
+    color: "#555"
+  }
+})
