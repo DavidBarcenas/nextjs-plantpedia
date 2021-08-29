@@ -32,6 +32,10 @@ ul, ol {
     max-width: 1360px;
 }
 
+.hover {
+    text-decoration: underline;
+}
+
 .hero-text:hover {
     text-decoration: underline;
     text-decoration-thickness: 3px;

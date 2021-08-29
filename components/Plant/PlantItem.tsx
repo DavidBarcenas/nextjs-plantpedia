@@ -42,6 +42,7 @@ export const PlantItem = ({
                         width={width}
                         aspectRatio={aspectRatio}
                         fit={fit}
+                        className={classes.img}
                     />
                     <Category
                         category={category}
@@ -50,7 +51,7 @@ export const PlantItem = ({
                     <Typography
                         variant={titleVariant}
                         component="h2"
-                        style={{ marginTop: '.5rem' }}>
+                        className={classes.text}>
                         {plantName}
                     </Typography>
                 </a>
@@ -89,5 +90,16 @@ const useStyles = makeStyles(theme => ({
         position: 'absolute',
         top: '1rem',
         right: '1rem'
+    },
+    img: {
+        '&:hover': {
+            opacity: .95
+        }
+    },
+    text: {
+        marginTop: '.5rem',
+        '&:hover': {
+            textDecoration: 'underline'
+        }
     }
 }))

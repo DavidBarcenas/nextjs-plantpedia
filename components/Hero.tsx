@@ -25,13 +25,17 @@ export const Hero = ({ image, plantName, category, slug, author }: Plant) => {
                     <p className={classes.heroAuthor}>- {author.fullName}</p>
                 </div>
                 <div className={classes.heroImg}>
-                    <CustomImage
-                        src={image.url}
-                        alt={plantName}
-                        width={400}
-                        layout='responsive'
-                        aspectRatio='4:3'
-                    />
+                    <Link href={`/entry/${slug}`}>
+                        <a title={`Go to ${plantName}`}>
+                            <CustomImage
+                                src={image.url}
+                                alt={plantName}
+                                width={400}
+                                layout='responsive'
+                                aspectRatio='4:3'
+                            />
+                        </a>
+                    </Link>
                     <div className={classes.backdrop}>
                         <CustomImage
                             src={image.url}
@@ -83,6 +87,10 @@ const useStyles = makeStyles(theme => ({
         [theme.breakpoints.up('md')]: {
             fontSize: '5rem',
         },
+        '&:hover': {
+            textDecoration: 'underline',
+            textDecorationThickness: '.2rem'
+        }
     },
     heroAuthor: {
         margin: '0.5rem 0'
