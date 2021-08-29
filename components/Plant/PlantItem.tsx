@@ -10,6 +10,7 @@ import { CustomImage } from '@components/CustomImage';
 import { CustomImageProps } from 'types/imageTypes';
 import { DistributivePick } from 'types/distributiveType';
 import { Category } from '@components/Category';
+import { memo } from 'react';
 
 type Props = {
     plant: Plant;
@@ -67,6 +68,13 @@ export const PlantItem = ({
         </article >
     )
 }
+
+const isEqual = (previoesProps: Props, newProps: Props) => {
+    const hasChanged = previoesProps.plant == newProps.plant
+    return hasChanged
+}
+
+export const MemoizedPlant = memo(PlantItem, isEqual)
 
 const useStyles = makeStyles(theme => ({
     plant: {

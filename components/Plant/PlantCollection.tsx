@@ -1,4 +1,4 @@
-import { PlantItem } from './PlantItem'
+import { MemoizedPlant } from './PlantItem'
 import { makeStyles } from '@material-ui/core';
 
 type Props = {
@@ -13,7 +13,7 @@ export const PlantCollection = ({ plants, variant = 'horizontal' }: Props) => {
         (
             <section className={`wrapper ${classes.plantCollection}`}>
                 {plants.map(plant => (
-                    <PlantItem
+                    <MemoizedPlant
                         key={plant.id}
                         plant={plant}
                         showDesc={false}
@@ -27,7 +27,7 @@ export const PlantCollection = ({ plants, variant = 'horizontal' }: Props) => {
         (
             <section className={`wrapper ${classes.plantCollection} ${classes.vertical}`}>
                 {plants.map(plant => (
-                    <PlantItem
+                    <MemoizedPlant
                         key={plant.id}
                         plant={plant}
                         showDesc={true}
