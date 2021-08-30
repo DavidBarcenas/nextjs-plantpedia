@@ -3,8 +3,10 @@ import Providers from "next-auth/providers"
 
 const options: NextAuthOptions = {
   theme: 'light',
-  debug: true,
-  session: {},
+  debug: process.env.NODE_ENV === 'development',
+  session: {
+    jwt: true
+  },
   jwt: {},
   providers: [
     Providers.Credentials({

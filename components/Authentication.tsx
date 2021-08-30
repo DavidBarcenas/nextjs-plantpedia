@@ -1,4 +1,4 @@
-import { Button } from '@material-ui/core';
+import { Avatar, Button } from '@material-ui/core';
 import { signIn, signOut, useSession } from 'next-auth/client';
 import { useTranslation } from 'next-i18next';
 
@@ -16,6 +16,7 @@ export const Authentication = () => {
 
   return (
     <>
+      <Avatar alt="Remy Sharp" src={session.user.image} />
       <span>{session.user.name}</span>
       <Button onClick={() => signOut()}>{t('signOut')}</Button>
     </>
