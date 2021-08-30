@@ -3,7 +3,7 @@ import { useTranslation } from 'next-i18next'
 import { Typography, Grid, Button, makeStyles } from '@material-ui/core';
 import { Authentication } from '@components/Authentication';
 
-export const SelectLang = () => {
+export const TopBar = () => {
   const { locales, locale } = useRouter()
   const { t } = useTranslation(['common'])
   const classes = useStyles()

@@ -7,7 +7,6 @@ const credentialsAuth: NextApiHandler<User> = (request, response) => {
   }
 
   const {username, password} = request.body
-  console.log(username, password)
 
   if(username === process.env.AUTH_PLANTPEDIA_USERNAME && 
     password === process.env.AUTH_PLANTPEDIA_PASSWORD) {

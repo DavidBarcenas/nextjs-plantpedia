@@ -1,4 +1,4 @@
-import { AppBar, Toolbar } from '@material-ui/core'
+import { AppBar, Grid, Toolbar } from '@material-ui/core'
 import { AnimatedFavicon } from '@components/AnimatedFavicon'
 import { makeStyles } from '@material-ui/core'
 import { theme } from './theme';
@@ -18,8 +18,19 @@ export const Navbar = ({ title, children }: Props) => {
             elevation={0}
             className={classes.navbar}>
             <Toolbar>
-                <AnimatedFavicon title={title} className={classes.logo} />
-                {children}
+                <Grid
+                    container
+                    direction="row"
+                    justifyContent="space-between"
+                    alignItems="center"
+                >
+                    <Grid item>
+                        <AnimatedFavicon title={title} className={classes.logo} />
+                    </Grid>
+                    <Grid item>
+                        {children}
+                    </Grid>
+                </Grid>
             </Toolbar>
         </AppBar>
     )
