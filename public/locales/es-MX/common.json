@@ -4,5 +4,7 @@
   "search": "Búsqueda",
   "imagesFrom": "Imágenes de",
   "previewMode": "El modo de vista previa está habilitado",
-  "disabledPreviewMode": "Desactivar el modo de vista previa"
+  "disabledPreviewMode": "Desactivar el modo de vista previa",
+  "signIn": "Iniciar sesión",
+  "signOut": "Cerrar sesión"
 }

@@ -5,7 +5,7 @@ import Button from '@material-ui/core/Button'
 
 import { Navbar } from "@ui/Navbar"
 import { PreviewModeBanner } from './PreviewModeBanner'
-import { SelectLang } from './SelectLang'
+import { TopBar } from './TopBar'
 
 export const Header = () => {
     const { t } = useTranslation(['common'])
@@ -13,10 +13,11 @@ export const Header = () => {
     return (
         <header>
             <PreviewModeBanner />
-            <SelectLang />
+            <TopBar />
             <Navbar title="🌿 Plantpedia">
                 <NavLink href="/top-stories">{t('topStories')}</NavLink>
                 <NavLink href="/search">{t('search')}</NavLink>
+                <NavLink href="/premium">Premium</NavLink>
             </Navbar>
         </header>
     )

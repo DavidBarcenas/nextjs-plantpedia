@@ -1,15 +1,18 @@
 import { useRouter } from 'next/router';
 import { useTranslation } from 'next-i18next'
 import { Typography, Grid, Button, makeStyles } from '@material-ui/core';
+import { Authentication } from '@components/Authentication';
 
-export const SelectLang = () => {
+export const TopBar = () => {
   const { locales, locale } = useRouter()
   const { t } = useTranslation(['common'])
   const classes = useStyles()
 
   return (
     <Grid container justifyContent="space-between" className={`bg-gray ${classes.conatiner}`}>
-      <Grid item></Grid>
+      <Grid item>
+        <Authentication />
+      </Grid>
       <Grid item>
         <Typography variant='body2' component='span' className={classes.text}>{t('language')}:</Typography>
         {

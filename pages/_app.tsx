@@ -1,5 +1,6 @@
 import { AppProps } from 'next/app'
 import { appWithTranslation } from 'next-i18next';
+import { Provider as AuthProvider } from "next-auth/client";
 import { QueryProvider } from '@api/QueryProvider';
 import { UIProvider } from '@ui/Provider'
 import { useServerStyles } from '@ui/ssr'
@@ -9,11 +10,13 @@ const NextApp = ({ Component, pageProps }: AppProps) => {
   useServerStyles()
 
   return (
-    <QueryProvider>
-      <UIProvider>
-        <Component {...pageProps} />
-      </UIProvider>
-    </QueryProvider>
+    <AuthProvider session={pageProps.session}>
+      <QueryProvider>
+        <UIProvider>
+          <Component {...pageProps} />
+        </UIProvider>
+      </QueryProvider>
+    </AuthProvider>
   )
 }
 

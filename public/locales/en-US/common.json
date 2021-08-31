@@ -4,5 +4,7 @@
   "search": "Search",
   "imagesFrom": "Images from",
   "previewMode": "Preview mode is enabled",
-  "disabledPreviewMode": "Disable preview mode"
+  "disabledPreviewMode": "Disable preview mode",
+  "signIn": "Sign in",
+  "signOut": "Sign out"
 }
