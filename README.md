@@ -43,6 +43,37 @@ Next.js' career is focused on creating professional sites from concept to produc
 - Use throttling and debouncing
 - Revalidation cache to improve load times
 
-# Quick Start
+# Running the app
+
+## Installation
+
+```bash
+git clone https://github.com/DavidBarcenas/nextjs-plantpedia.git
+cd nextjs-plantpedia
+
+# if you use npm
+npm install
+
+# if you use yarn
+yarn install
+```
+
+## Development
+`next dev` starts the application in development mode with active code reloading, bug reports, and more.
+
+The application will start at `http://localhost:3000` by default.
+
+
+## Build
+`next build` creates an optimized production build of your application. The output shows information about each route.
+
+## Run the application in production mode
+`next start` starts the application in production mode. The application must first be compiled with: `next build`
 
 # Notes
+
+Don't forget to set your environment variables. In the project there is a file called **.env.local.example** there it has all the variables you will need.\
+It will also be necessary that you have an account created in [Contentful CMS.](https://www.contentful.com/)
+
+# License
+Released under the  [MIT licensed](LICENSE). Feel free to fork this project and improve it!
