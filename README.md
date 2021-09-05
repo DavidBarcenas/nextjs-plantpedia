@@ -13,12 +13,12 @@
 
 
 # Preview
-![App screenshot](./.readme-static/app.png)
+![App screenshot](./.readme-static/app.jpg)
 
 Screenshots: 
-[Home](./.readme-static/home.png) |
-[Post](./.readme-static/post.png) |
-[Top Stories](./.readme-static/top-stories.png) |
+[Home](./.readme-static/home.png) 
+[Post](./.readme-static/post.png) 
+[Top Stories](./.readme-static/top-stories.png) 
 [Search](./.readme-static/search.png)
 
 # The Project
@@ -50,10 +50,8 @@ Next.js' career is focused on creating professional sites from concept to produc
 ```bash
 git clone https://github.com/DavidBarcenas/nextjs-plantpedia.git
 cd nextjs-plantpedia
-
 # if you use npm
 npm install
-
 # if you use yarn
 yarn install
 ```
@@ -76,4 +74,5 @@ Don't forget to set your environment variables. In the project there is a file c
 It will also be necessary that you have an account created in [Contentful CMS.](https://www.contentful.com/)
 
 # License
-Released under the  [MIT licensed](LICENSE). Feel free to fork this project and improve it!
+Released under the  [MIT licensed](LICENSE).\
+Feel free to fork this project and improve it. Give a ⭐️ if you like this project!
