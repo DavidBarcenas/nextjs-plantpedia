@@ -16,9 +16,9 @@
 ![App screenshot](./.readme-static/app.jpg)
 
 Screenshots: 
-[Home](./.readme-static/home.png) 
-[Post](./.readme-static/post.png) 
-[Top Stories](./.readme-static/top-stories.png) 
+[Home](./.readme-static/home.png),
+[Post](./.readme-static/post.png),
+[Top Stories](./.readme-static/top-stories.png),
 [Search](./.readme-static/search.png)
 
 # The Project
@@ -68,10 +68,16 @@ The application will start at `http://localhost:3000` by default.
 ## Run the application in production mode
 `next start` starts the application in production mode. The application must first be compiled with: `next build`
 
+## Import data to Contentful
+`yarn build:schema` This command will take the configuration and information files from the import folder and will generate more than 400 entries for the application.
+
 # Notes
 
 Don't forget to set your environment variables. In the project there is a file called **.env.local.example** there it has all the variables you will need.\
 It will also be necessary that you have an account created in [Contentful CMS.](https://www.contentful.com/)
+
+# Credits
+The data used in this project was provided in the platzi [next.js course](https://platzi.com/cursos/nextjs-jamstack/).
 
 # License
 Released under the  [MIT licensed](LICENSE).\
